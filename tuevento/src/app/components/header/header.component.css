@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans:ital,wght@0,200;0,300;1,100;1,200&family=Comfortaa:wght@300&family=Montserrat:wght@300&family=Prompt:ital,wght@1,100&display=swap');
+header{
+    min-width: 100vw;
+    text-align: center;
+    background: #00000052;
+    z-index: 3;
+    border: 3px solid transparent;
+    position: sticky;
+    top: 0;
+    display: grid;
+    display: grid;
+    grid-column: 6;
+    grid-row: 3;
+    white-space: nowrap;
+    animation: hp 4s infinite linear;
+}
+
+.active{
+    background: rgba(10, 38, 117, 0.322);
+}
+form{
+    grid-row: 2;
+    grid-column: 3;
+    position: sticky;
+}
+
+input{font: 1.2em sans-serif;border: none;}
+
+input:first-child{color: rgb(73, 77, 77);border-radius: 15px 0px 0 15px ;}
+
+input:last-child{
+    border-radius: 0 15px 15px 0;
+}
+a{
+    font-family: 'Comfortaa', cursive;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    grid-row: 1/4;
+    font-size:2rem;
+    grid-column: 1;
+    text-align: left;
+} 
+div{
+    grid-row: 5;
+    grid-column: 1/4;
+    display: flex;
+    justify-content: space-evenly;
+}
+div a{
+    width: 33vw;
+    text-align: center;
+}
+div a:hover{
+    background: rgb(95, 85, 241);
+}
+
+@media (orientation: portrait){
+    div{
+        font-size: 0.6rem;
+        justify-content: space-evenly;
+    }
+
+}

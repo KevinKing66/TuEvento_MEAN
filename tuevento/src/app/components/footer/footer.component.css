@@ -1,0 +1,17 @@
+footer {
+    text-decoration: none;
+    color: aliceblue;
+    background-image: linear-gradient(to bottom, #1770f500, #03030a, #000000);;
+    position: fixed;
+    position: bottom;
+    width: 100vw;
+    bottom: 0;
+    height: 6em;
+    z-index: 3;
+    padding-top: 1em solid #ffffff;
+    text-align: center;
+    transition: all 200ms ease-out;
+}
+footer:hover{
+    font-size: 1.15rem;
+}
