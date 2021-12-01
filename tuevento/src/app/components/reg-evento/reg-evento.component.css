@@ -1,46 +1,67 @@
+.submit-form{
+    width: 100vw;
+    text-align:center;
+}
 .xd{
+    display: grid;
     font-size: 1.2rem;
     color: aliceblue;
     background-color: rgba(0, 0, 0, 0.473);
-    max-height: 90vh;
-    min-height: 60vh;
-    display:  grid;
-    grid-template-columns:3;
-    grid-template-rows: 4;
-    border: 3px solid rgba(182, 199, 255, 0.644);
-    border-radius: 10px;
+    min-width: 65vw;
+    height: 100%;
+    max-width: 100vw;    
+    /* border: 3px solid rgba(182, 199, 255, 0.644);
+    border-radius: 10px; */
 }
 h1{
-    grid-column: 1/5;
     grid-row: 1;  
     text-align: center;  
-}
-div{
-    display: grid;
-    grid-column: 1/4;
-}
-button{
-    grid-row: 9;
-    grid-column: 2;
-    border: 0px;
-    border-radius: 15px;
-    margin-bottom: 2rem;
-    background: rgba(255, 255, 255, 0.274);
-    color: rgb(255, 255, 255);
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 1.5rem;
-    text-decoration: none;
-    
-}
+}      
 input{
-    align-content: flex-end;
+    align-content: center;
     grid-column: 5;
     border: 0;
     border-radius: 15px;
     font-size: 1.3rem;
     height: 2rem;
-    width: rem;
 }
 label{
     font-size: 2em;
+}
+
+button{
+    grid-column: 1/2;
+    border: 0px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.274);
+    color: rgb(255, 255, 255);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.5rem;
+    height: 3.5rem;
+}
+
+.form-group{
+    display: flex;
+    justify-content: space-around;
+}
+
+@media screen and (orientation: landscape ) {
+    *{font-size: calc(100wh/60.4);}
+
+}
+@media screen and (orientation: portrait) and (min-aspect-ratio:9/22) and (max-aspect-ratio:9/18) {
+    * {font-size: 22px;}
+
+}
+@media screen and (orientation: portrait){
+    * {font-size: 18px;}
+    .xd{
+        background: none;
+    }
+    input{
+        width: 80vw;
+    }
+    .form-group{
+        display: inline;
+    }
 }

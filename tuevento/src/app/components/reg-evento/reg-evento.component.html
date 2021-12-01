@@ -1,20 +1,22 @@
 <div>
     <div class="submit-form">
         <div class="xd" *ngIf="!submitted">
+            
             <h1> registrar eventos</h1>
-            <div class="form-group">
-            <label for="nombre">Nombre</label>
-            <input
-                type="text"
-                class="form-control"
-                id="nombre"
-                required
-                [(ngModel)]="evento.nombre"
-                name="nombre" aria-required
-            />
+            
+            <div class="form-group" id="f1">
+                <label for="nombre">Nombre</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="nombre"
+                    required
+                    [(ngModel)]="evento.nombre"
+                    name="nombre" aria-required
+                />
             </div>
     
-            <div class="form-group">
+            <div class="form-group" id="f2">
                 <label for="descripcion">Descripcion</label>
                 <input
                 class="form-control"
@@ -31,7 +33,6 @@
                 <input
                 class="form-control"
                 id="ubicacion"
-                required
                 [(ngModel)]="evento.ubicacion"
                 name="ubicacion"
                 />
@@ -39,19 +40,27 @@
             </div>
 
             <div class="form-group">
-                <label for="description">Descripcion</label>
-                <input
-                class="form-control"
-                id="description"
-                required
-                [(ngModel)]="evento.description"
-                name="descripcion"
-                />
+                <label for="precio">precio</label>
+                <input type="number" placeholder="precio es en pesos colombianos"
+                [(ngModel)]="evento.precio"
+                name="precio">
                 
             </div>
-    
+
+            <div class="form-group">
+                <label for="precio">fecha</label>
+                <input type="Date" placeholder="fecha"
+                [(ngModel)]="evento.fecha"
+                name="precio">
+                
+            </div>
+
+            <br>
             
-                <button (click)="saveEvento()" class="btn btn-success">Enviar</button>
+
+            <div class="but" *ngIf="evento.nombre!='' && evento.description!='' && evento.ubicacion!=''">
+                <button (click)="saveEvento()" class="btn btn-success">Enviar</button> 
+            </div>
 
         </div>
   

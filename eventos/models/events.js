@@ -4,8 +4,9 @@ var EV = new Schema({
     nombre: {type: String, require : true},
     activo : {type: Boolean, require : true, default: true},
     ubicacion: {type: String, require : true},
-    description: String,
-    precio: Number,
+    description: {type: String, require : true} ,
+    precio: {type: Number, required: true},
+    fecha: {type: Date, required: true},
 });
 
 const evento = moongose.model("evento", EV);
