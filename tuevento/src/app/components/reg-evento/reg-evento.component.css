@@ -1,4 +1,4 @@
-form{
+.xd{
     font-size: 1.2rem;
     color: aliceblue;
     background-color: rgba(0, 0, 0, 0.473);
@@ -10,29 +10,36 @@ form{
     border: 3px solid rgba(182, 199, 255, 0.644);
     border-radius: 10px;
 }
-form h1{
-    
-    grid-template-columns: 12;  
+h1{
+    grid-column: 1/5;
+    grid-row: 1;  
     text-align: center;  
 }
 div{
     display: grid;
-    grid-template-columns: 4;
+    grid-column: 1/4;
 }
 button{
     grid-row: 9;
-    grid-column: 6/8;
-    border-radius: 15px 0;
+    grid-column: 2;
+    border: 0px;
+    border-radius: 15px;
     margin-bottom: 2rem;
+    background: rgba(255, 255, 255, 0.274);
+    color: rgb(255, 255, 255);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.5rem;
+    text-decoration: none;
+    
 }
 input{
-    align-content: center;
-    grid-column: 2;
+    align-content: flex-end;
+    grid-column: 5;
     border: 0;
     border-radius: 15px;
     font-size: 1.3rem;
     height: 2rem;
-    min-width: 3rem;
+    width: rem;
 }
 label{
     font-size: 2em;

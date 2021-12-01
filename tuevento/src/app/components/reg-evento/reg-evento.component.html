@@ -1,7 +1,77 @@
-
 <div>
+    <div class="submit-form">
+        <div class="xd" *ngIf="!submitted">
+            <h1> registrar eventos</h1>
+            <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input
+                type="text"
+                class="form-control"
+                id="nombre"
+                required
+                [(ngModel)]="evento.nombre"
+                name="nombre" aria-required
+            />
+            </div>
+    
+            <div class="form-group">
+                <label for="descripcion">Descripcion</label>
+                <input
+                class="form-control"
+                id="descripcion"
+                required
+                [(ngModel)]="evento.description"
+                name="descripcion"
+                />
+                
+            </div>  
 
-    <form action="">
+            <div class="form-group">
+                <label for="ubicacion">ubicacion</label>
+                <input
+                class="form-control"
+                id="ubicacion"
+                required
+                [(ngModel)]="evento.ubicacion"
+                name="ubicacion"
+                />
+                
+            </div>
+
+            <div class="form-group">
+                <label for="description">Descripcion</label>
+                <input
+                class="form-control"
+                id="description"
+                required
+                [(ngModel)]="evento.description"
+                name="descripcion"
+                />
+                
+            </div>
+    
+            
+                <button (click)="saveEvento()" class="btn btn-success">Enviar</button>
+
+        </div>
+  
+      <div *ngIf="submitted">
+        <h4>El evento fue creado!!</h4>
+        <button (click)="newEvento()">Agregar</button>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+<!-- <div>
+
+
+    <form #EventsF="ngForm" (ngSubmit)="events(EventsF)">
         <h1>Creacion de eventos</h1>
         <div class="NE">
             <label for="NE">Nombre Evento</label>
@@ -9,17 +79,18 @@
         </div>
 
         <div class="DE">
-            <label for="DE" class="DE">Descripcion Evento</label>
-            <input type="text" name="NE" class="DE" placeholder="descripcion">
+            cd tuevento
+            cd <label for="DE" class="DE">Descripcion Evento</label>
+            <input type="text" name="NE" class="DE" placeholder="descripcion" [(ngModel)]="EventsF.Nombre")]>
         </div>
         <div class="FE">
             <label for="FE" class="FE">fecha Evento</label>
             <input type="date" name="FE">
         </div>
 
-        <!-- <button type="submit" [disabled]="!form.form.valid">
+        <button type="submit" [disabled]="!EventsF.form.valid">
             crear
-        </button> -->
+        </button>
     </form>
 
-</div>
+</div> -->

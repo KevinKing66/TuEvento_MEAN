@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EventoModule } from 'src/app/models/evento/evento.module';
+import { EventoM } from 'src/app/models/evento/evento.module';
 import { VieweventsService } from 'src/app/services/viewevents.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { VieweventsService } from 'src/app/services/viewevents.service';
 })
 export class VieweventsComponent implements OnInit {
 
-  listEvents: EventoModule[] =[];
+  listEvents: EventoM[] =[];
 
   constructor(private viewEventService: VieweventsService) {
     //arrow fun. para mostrar info, y mostrar si hay errores

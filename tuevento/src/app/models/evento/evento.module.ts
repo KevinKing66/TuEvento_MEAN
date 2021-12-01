@@ -1,20 +1,15 @@
-import { NgModule } from '@angular/core';
-import { CommonModule, Time } from '@angular/common';
-import { Data } from '@angular/router';
+export class EventoM{
+  _id?: string;
+  nombre: String;
+  ubicacion: String;
+  description: String;
+  precio: Number = 0;
 
+  constructor(nombre: string, description: string, ubicacion: string, precio: number ){
+    this.nombre = nombre;
+    this.description = description;
+    this.ubicacion = ubicacion;
+    this.precio = precio;
+}
 
-
-@NgModule({
-  declarations: [],
-  imports: [
-    CommonModule
-  ]
-})
-export class EventoModule {
-  _id: String = ""
-  email: String = "";
-  nombre: String = "";
-  status: boolean = false ;
-  description: string = "";
-  ubicacion: string = "";
  }
