@@ -1,6 +1,6 @@
 <div>
-    <ul>
-        <li *ngFor="let e of listEvents">
+    <dl>
+        <dt *ngFor="let e of listEvents">
             <div class="image">
                 <h1 id="ubicacion"> {{e.ubicacion}} </h1>
                 <img src="https://www.masquenegocio.com/wp-content/uploads/2018/03/evento-concierto-874x492.jpg" alt="">
@@ -8,6 +8,6 @@
             <h1>  {{ e.nombre }}</h1>
             <h2>    {{e.fecha}}</h2>
             <p> {{e.description }}</p>
-        </li>
-    </ul>
+        </dt>
+    </dl>
 </div>
