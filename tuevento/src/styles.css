@@ -5,8 +5,9 @@ html,body {
     padding: 0;
     min-height: 100vh;
     min-width: 100vw;
-    background-image: linear-gradient(to bottom, #0065fc, #343385, #2f0e3f, #000000, #000000);
-    overflow-x: hidden;
+    background-image: linear-gradient(to bottom, #ffffff, #a7a6ff, #004454, #000000, #000000);
+    overflow-x: hidden;  
+
   }
 
   button{

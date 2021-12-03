@@ -48,15 +48,13 @@
             </div>
 
             <div class="form-group">
-                <label for="precio">fecha</label>
+                <label for="fecha">fecha</label>
                 <input type="Date" placeholder="fecha"
                 [(ngModel)]="evento.fecha"
-                name="precio">
-                
+                name="fecha">
             </div>
 
             <br>
-            
 
             <div class="but" *ngIf="evento.nombre!='' && evento.description!='' && evento.ubicacion!=''">
                 <button (click)="saveEvento()" class="btn btn-success">Enviar</button> 
