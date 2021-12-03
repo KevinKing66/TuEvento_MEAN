@@ -14,7 +14,9 @@ export class LoginComponent{
 
 
   userP: any = localStorage.getItem("usuario");
-  user: any = JSON.parse(this.userP)
+  user: any =  JSON.parse(this.userP);
+  userC: boolean = this.user? true:false;
+
   constructor(private services: LoginService) {
 
 
@@ -23,17 +25,27 @@ export class LoginComponent{
 
    loginM(loginP:Form){
     //subscribe devuelve una respuesta
-    this.services.postSendLogin(this.login).subscribe(res=>
-      // this.user = res 
-      res? localStorage.setItem('usuario', JSON.stringify(res)) : console.log("no joda")
-    );
-    console.log(localStorage)
+    this.services.postSendLogin(this.login).subscribe(res=>{
+      res? localStorage.setItem('usuario', JSON.stringify(res)) : console.log("no joda");
+      
+    }, error => {
+      console.log(error)
+    })
+    ;
+    this.date()
+  }
+  date(): any{
+    this.userP= localStorage.getItem("usuario");
+    this.user =  JSON.parse(this.userP);
+    this.userC = this.user? true:false
+  }
+
+  clearStorage(): any{
+    localStorage.clear();
+    this.user = false
   }
 
 
   login: loginM = new loginM();
 }
 
-function usuario(usuario: any): any {
-  throw new Error('Function not implemented.');
-}

@@ -1,4 +1,4 @@
-<div  *ngIf="!user.status">
+<div  *ngIf="!user">
 
     <form #loginF="ngForm" (ngSubmit)="loginM(loginF)">
         <h1>Log In</h1>
@@ -12,8 +12,8 @@
 </div>
 
 
-<div *ngIf="user.status" class="iniciado">
-    <h1 style="font-size: 3rem;" *ngIf="user.status">bienvenido {{user.fullName}}</h1>
+<div *ngIf="user" class="iniciado" style="display:flex;flex-direction: column;align-items: center">
+    <h1 style="font-size: 3rem;" *ngIf="user">bienvenido {{user.fullName}}</h1>
 
-    <!-- <button {{ ()=>storage.clear()}}>hola</button> -->
+    <button (click)="clearStorage()" style="height:3rem;border-radius: 15px;">cerrar sesion</button>
 </div>
