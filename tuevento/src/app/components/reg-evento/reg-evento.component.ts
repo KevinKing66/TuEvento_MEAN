@@ -16,6 +16,7 @@ export class RegEventoComponent{
   ubicacion: '',
   description: '',
   fecha: '',
+  hora: '',
   precio: 0
 }
 submitted = false;
@@ -29,7 +30,8 @@ submitted = false;
       description: this.evento.description,
       ubicacion: this.evento.ubicacion,
       precio: this.evento.precio,
-      fecha: this.evento.fecha
+      fecha: this.evento.fecha,
+      hora: this.evento.hora
     }   
     this.service.create(data)
     .subscribe(
@@ -49,6 +51,7 @@ submitted = false;
       description: '',
       ubicacion: '',
       fecha: '',
+      hora: '',
       precio: 0,
     };
   }

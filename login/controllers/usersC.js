@@ -55,25 +55,20 @@ function DeleteUser(req, res){
             message: 'No hemos encontrado el usuario'
             })
         }else{
-            if(!iduser){
-                res.status(404).send({message:'El registro a buscar no se encuentra disponible'});
-            }else{
-            res.status(200).send({result});
-                }
-            }
-    }                       );
+            !iduser ? res.status(404).send({message:'El registro a buscar no se encuentra disponible'}) : res.status(200).send({result});
+        }
+    });
 }
 
 async function Login(req, res){
     const { password, email } = req.body;
     try { 
-        const userdb =  await user.findOne({email});
-        if (userdb && password == userdb.password){
-                res.json({login : true});
-        }else{res.json({login : false});}
+        const userdb =  await user.findOne({email}); 
+        userdb.status = true;
+        (userdb) && password == userdb.password ? res.json(userdb) : res.json(userdb.status = false);
     } 
     catch (error) { 
-        return res.status(400).json({ mensaje: 'Ocurrio un error', error })
+        return res.status (400).json({ mensaje: 'Ocurrio un error', error })
     } 
 }
 

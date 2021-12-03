@@ -14,4 +14,5 @@ export class VieweventsService {
   getEvent(): Observable<any>{
     return this.http.get(this.url)
   }
+  
 }

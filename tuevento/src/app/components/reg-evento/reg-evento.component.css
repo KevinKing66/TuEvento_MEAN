@@ -22,15 +22,18 @@ input{
     align-content: center;
     grid-column: 5;
     border: 0;
-    border-radius: 15px;
+    border-radius: 10px 15px 0 0;
     font-size: 1.3rem;
     height: 2rem;
 }
+input:hover{
+    font-size: 1.5rem;
+}
+
 label{
     font-size: 2em;
     width: 5rem;
 }
-
 button{
     grid-column: 1/2;
     border: 0px;
@@ -46,7 +49,12 @@ button{
     display: flex;
     justify-content: space-around;
 }
-
+#time input:first-child{
+    border-radius: 15px 0 0;
+}
+#time input:last-child{
+    border-radius: 0 15px 0 0;
+}
 @media screen and (orientation: landscape ) {
     *{font-size: calc(100wh/60.4);}
 
@@ -66,4 +74,15 @@ button{
     .form-group{
         display: inline;
     }
+    #time input{
+        width: 40vw;
+    }    
+    #time input:first-child{
+        border-radius: 15px 0 0;
+    }
+    #time input:last-child{
+        border-radius:0 0 10px 0px;
+    }
+
+
 }

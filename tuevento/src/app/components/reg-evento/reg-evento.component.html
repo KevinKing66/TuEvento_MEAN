@@ -49,9 +49,14 @@
 
             <div class="form-group">
                 <label for="fecha">fecha</label>
-                <input type="Date" placeholder="fecha"
-                [(ngModel)]="evento.fecha"
-                name="fecha">
+                <div id="time">
+                    <input type="Date" placeholder="fecha"
+                    [(ngModel)]="evento.fecha"
+                    name="fecha">
+                    <input type="time" placeholder="fecha"
+                    [(ngModel)]="evento.hora"
+                    name="nombre">
+                </div>
             </div>
 
             <br>

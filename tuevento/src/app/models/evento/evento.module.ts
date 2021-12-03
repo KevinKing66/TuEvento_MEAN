@@ -8,6 +8,7 @@ export class EventoM{
   description: String;
   fecha: string;
   precio: Number = 0;
+  hora: any;
 
   constructor(nombre: string, description: string, fecha: string, ubicacion: string, precio: number ){
     this.nombre = nombre;
