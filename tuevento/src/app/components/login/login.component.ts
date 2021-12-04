@@ -23,22 +23,19 @@ export class LoginComponent{
    }
 
 
+
    loginM(loginP:Form){
     //subscribe devuelve una respuesta
     this.services.postSendLogin(this.login).subscribe(res=>{
       res? localStorage.setItem('usuario', JSON.stringify(res)) : console.log("no joda");
-      
+        this.userP= localStorage.getItem("usuario");
+        this.user =  JSON.parse(this.userP);
     }, error => {
       console.log(error)
     })
     ;
-    this.date()
   }
-  date(): any{
-    this.userP= localStorage.getItem("usuario");
-    this.user =  JSON.parse(this.userP);
-    this.userC = this.user? true:false
-  }
+
 
   clearStorage(): any{
     localStorage.clear();

@@ -2,7 +2,6 @@ const { response } = require("express");
 const { find } = require("../models/events");
 const evento = require("../models/events");
 
-
 async function BuscareventName(req, res){
     const name = req.params.name; 
     try { 
@@ -62,5 +61,23 @@ async function Deleteevento(req, res){
     } 
 }
 
+function saveImage(req, res){
+    let sampleFile;
+  let uploadPath;
 
-module.exports = {BuscareventName, BuscarEvent, Updateevento, Deleteevento, saveevento};
+  if (!req.files || Object.keys(req.files).length === 0) {
+    return res.status(400).send('No files were uploaded.');
+}
+
+sampleFile = req.files.img;
+uploadPath = './imagenes/' + sampleFile.name;
+
+sampleFile.mv(uploadPath, function(err) {
+  if (err)
+    return res.status(500).send(err);
+    res.send('File uploaded!');
+  });
+};
+
+
+module.exports = {BuscareventName, BuscarEvent, Updateevento, Deleteevento, saveevento, saveImage};

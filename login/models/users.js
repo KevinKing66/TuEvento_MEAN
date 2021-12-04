@@ -1,8 +1,8 @@
 var moongose = require('mongoose');
 var Schema = moongose.Schema;
 var US = new Schema({
-    id:  {type: String},
-    email: {type: String, require : true},
+    _id:  {type: String, required: true},
+    email: {type: String, require : true, unique: true},
     fullName: {type: String, require : true},
     status : {type: Boolean, require : true, default: false},
     password: {type: String, require : true},

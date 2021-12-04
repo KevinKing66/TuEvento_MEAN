@@ -10,7 +10,7 @@ export class EventoM{
   precio: Number = 0;
   hora: any;
 
-  constructor(nombre: string, description: string, fecha: string, ubicacion: string, precio: number ){
+  constructor(nombre: string, description: string, fecha: string, ubicacion: string, precio: number, public img?:string ){
     this.nombre = nombre;
     this.description = description;
     this.ubicacion = ubicacion;
