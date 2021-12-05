@@ -11,6 +11,10 @@ h1{
     grid-column: 1/13;  
     text-align: center;  
 }
+a{
+    grid-column: 1/13;  
+    text-align: center;  
+}
 #ki{
     grid-row:  3;
     grid-column: 5/9;

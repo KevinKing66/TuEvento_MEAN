@@ -3,11 +3,14 @@
         <dt *ngFor="let e of listEvents">
             <div class="image">
                 <h1 id="ubicacion"> {{e.ubicacion}} </h1>
-                <img [src]="e.img" alt="">
+                <img src="" alt="">
             </div>
             <h1>  {{ e.nombre }}</h1>
             <h2>    {{e.fecha}} {{e.hora}}</h2>
-            <p> {{e.description }}</p>
+            <p> {{e.description }}
+            </p>
+            
+            <button>eliminar</button>
         </dt>
     </dl>
 </div>

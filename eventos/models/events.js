@@ -1,3 +1,4 @@
+const fileUpload = require('express-fileupload');
 var moongose = require('mongoose');
 var Schema = moongose.Schema;
 var EV = new Schema({
@@ -8,7 +9,7 @@ var EV = new Schema({
     precio: {type: Number, required: true},
     fecha: {type: String, required: true},
     hora: {type: String, required: true},
-    
+    img: String,
 });
 
 const evento = moongose.model("evento", EV);
