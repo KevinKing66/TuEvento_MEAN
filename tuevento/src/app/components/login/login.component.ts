@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Form } from '@angular/forms';
 import { loginM } from '../../models/login/login';
-import  { UserM } from '../../models/user/user'
 import { LoginService } from '../../services/login.service';
 
 @Component({
@@ -14,8 +13,12 @@ export class LoginComponent{
 
   userP: any = localStorage.getItem("usuario");
   user: any =  JSON.parse(this.userP);
-  userC: boolean = this.user? true:false;
   logUp: boolean = false;
+  UserC: loginM = {
+    fullName: '',
+    email: '',
+    password:''
+  };
 
   constructor(private services: LoginService) {
 
@@ -43,6 +46,23 @@ export class LoginComponent{
   logUpF(): any{
     this.logUp ? this.logUp=false : this.logUp=true;  
   }
+
+  saveUser(): void {
+    const data = {
+      email: this.UserC.email,
+      fullName: this.UserC.fullName,
+      password: this.UserC.password,
+    }
+    this.services.create(data)
+    .subscribe(
+      res => {
+        console.log(res);
+        this.logUp = true;
+      },
+      error => {
+        console.log(error);
+      });
+}
 
 
   login: loginM = new loginM();

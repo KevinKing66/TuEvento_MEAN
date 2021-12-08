@@ -1,5 +1,6 @@
 var app = require('./app'),
-port = 1001,
 mongoose = require('./DB/CBD');
-app.listen(port, () =>{console.log("SG")});
+
+app.listen(1001, () =>{console.log("SG")});
+// app.listen(process.env.port || 8080, () =>{console.log("SG")});
 

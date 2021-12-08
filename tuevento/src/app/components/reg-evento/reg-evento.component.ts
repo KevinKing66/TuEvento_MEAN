@@ -10,7 +10,7 @@ import { RegEventService } from 'src/app/services/reg-event.service';
   styleUrls: ['./reg-evento.component.css']
 })
 export class RegEventoComponent{
-
+  
   evento: EventoM = {
   nombre: '',
   ubicacion: '',

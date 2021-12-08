@@ -27,7 +27,7 @@ async function BuscarUsuario(req, res){
 }
 
 function saveUser(req,res){
-    var newUsuer= new user(req.body);
+    var newUser= new user(req.body);
     newUser.save((err,result)=>{
     res.status(200).send({message:result});
     });

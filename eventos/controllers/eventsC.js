@@ -28,8 +28,7 @@ function saveevento(req,res){
     var newEvent = new evento(req.body);
     newEvent.save((err,result)=>{
     res.status(200).send({message:result});
-    })
-    
+    });
     }
 
 

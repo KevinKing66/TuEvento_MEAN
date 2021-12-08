@@ -2,9 +2,10 @@ form{
     font-size: 1.2rem;
     color: aliceblue;
     height: 28rem;
-    display:  grid;
-    grid-template-columns:3;
-    grid-row: 4;
+    display:  flex;
+    /* grid-template-columns:3;
+    grid-row: 4; */
+    flex-direction: column;
 }
 h1{
     grid-row: 1;

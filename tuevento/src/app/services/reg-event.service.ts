@@ -8,7 +8,7 @@ import { EventoM } from '../models/evento/evento.module';
 })
 export class RegEventService {
 
-  url = "http://localhost:1001/created"
+  url = "https://microeventos12.herokuapp.com/created"
   constructor(private http: HttpClient) { }
 
   create(event:EventoM){

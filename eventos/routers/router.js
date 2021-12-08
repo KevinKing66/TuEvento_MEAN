@@ -11,5 +11,5 @@ router.get('/evento/:name', eventoC.BuscareventName)
 router.post('/created', eventoC.saveevento);
 router.put('/update/:id', eventoC.Updateevento);
 router.post('/img', eventoC.saveImage)
-
+router.get('', (res, req)=>{res.status(200).send({"saluda": "hola"})})
 module.exports = router;

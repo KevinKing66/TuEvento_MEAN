@@ -1,4 +1,7 @@
 export class loginM{
-  email: String = "";
-  password: String = "";
+    _id?: String;
+    email: String = "";
+    fullName: String ='';
+    phoneNumber?: Number;
+    password: String = ''; 
 };

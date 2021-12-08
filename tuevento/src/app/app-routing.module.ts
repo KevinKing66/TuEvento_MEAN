@@ -4,14 +4,13 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegEventoComponent } from './components/reg-evento/reg-evento.component';
 import { VieweventsComponent } from './components/viewevents/viewevents.component';
-import { VieweventsService } from './services/viewevents.service';
 
 
 const routes: Routes = [
-  {path: 'login', component: LoginComponent},
-  {path: 'events', component: VieweventsComponent},
-  {path: 'eventsC', component: RegEventoComponent},
-  {path: '', component: HomeComponent},
+  {path: '**', component: LoginComponent},
+  // {path: 'events', component: VieweventsComponent},
+  // {path: 'eventsC', component: RegEventoComponent},
+  // {path: '', component: HomeComponent}
 ];
 
 @NgModule({

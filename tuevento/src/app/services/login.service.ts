@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { loginM } from '../models/login/login';
-import { UserM } from '../models/user/user';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,15 +13,13 @@ export class LoginService {
 
   }
 
-  createUser(newUser:UserM){
-    const reCreate = "created";
-    return this.http.post(this.url+reCreate, newUser);
-   }
- 
-
   postSendLogin(login:loginM){
     const re = "/UV"
     return this.http.post(this.url+re , login);
   }
-
+  
+  create(UserC:loginM): Observable<Object>{
+    const res = "/created"
+    return this.http.post(this.url+res, UserC);
+   }
 }

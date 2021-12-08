@@ -19,3 +19,10 @@ export class EventoM{
 }
 
  }
+ export class UserM {
+  _id?: String;
+  email: String = "";
+  fullName: String ='';
+  phoneNumber?: Number;
+  password: String = ''; 
+ }
