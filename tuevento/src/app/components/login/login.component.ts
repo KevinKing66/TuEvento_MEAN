@@ -14,6 +14,7 @@ export class LoginComponent{
   userP: any = localStorage.getItem("usuario");
   user: any =  JSON.parse(this.userP);
   logUp: boolean = false;
+  mod: boolean = false;
   UserC: loginM = {
     fullName: '',
     email: '',
@@ -38,9 +39,10 @@ export class LoginComponent{
   }
 
 
+
   clearStorage(): any{
     localStorage.clear();
-    this.user = false
+    this.user = false;
   }
 
   logUpF(): any{
@@ -80,6 +82,10 @@ editUser(){
   },error=>{
     console.log(error)
   });
+}
+
+xd():any{
+  this.mod? this.mod=false : this.mod=true;
 }
 
   userF: loginM = this.user;

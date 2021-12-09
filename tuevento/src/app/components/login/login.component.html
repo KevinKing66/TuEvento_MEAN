@@ -2,8 +2,8 @@
 
     <form #loginF="ngForm" (ngSubmit)="loginM(loginF)">
         <h1>Log In</h1>
-        <input type="email" name="E"  [(ngModel)]="login.email" id="ki" placeholder="Email">
-        <input type="password" name="P"  [(ngModel)]="login.password" id="li" placeholder="password">
+        <input type="email" name="E"  [(ngModel)]="login.email" id="E" placeholder="Email" class="form">
+        <input type="password" name="P"  [(ngModel)]="login.password" id="P" placeholder="password" class="form">
 
         <a href=""></a>
         <button type="submit" [disabled]="!loginF.form.valid">
@@ -18,10 +18,10 @@
     <form>
         <h1>logUp</h1>
 
-        <input type="email" name="E"  [(ngModel)]="UserC.email"placeholder="Email">
-        <input type="fullName" name="FN"  [(ngModel)]="UserC.fullName"placeholder="Nombre completo">
-        <input type="password" name="P"  [(ngModel)]="UserC.password"placeholder="password">
-        <input type="number" name="PN" [(ngModel)]="UserC.phoneNumber">
+        <input type="email" name="E"  [(ngModel)]="UserC.email" placeholder="Email" id="E" class="form">
+        <input type="fullName" name="FN"  [(ngModel)]="UserC.fullName" placeholder="Nombre completo" id="FN" class="form">
+        <input type="password" name="P"  [(ngModel)]="UserC.password" placeholder="password" id="P" class="form">
+        <input type="number" name="PN" [(ngModel)]="UserC.phoneNumber" id="pN">
         <button>ya tengo un usuario</button>
 
         <button (click)="saveUser()">
@@ -32,10 +32,12 @@
 
 
 
-<div *ngIf="user" class="iniciado" style="display:flex;flex-direction: column;align-items: center">
+<div *ngIf="user&&!mod" class="iniciado" style="display:flex;flex-direction: column;align-items: center">
     <h1 style="font-size: 3rem;" *ngIf="user">bienvenido {{user.fullName}}</h1>
 
     <button (click)="clearStorage()" style="height:3rem;border-radius: 15px;">cerrar sesion</button>
+    <br>
+    <button (click)="xd()" style="height:3rem;border-radius: 15px;">cambiar informacion</button>
     <br>
     <button (click)="deleteUser(user._id)" style="background-color: brown;border-radius: 10px;height: 2rem;">eliminar usuario</button>
 
@@ -43,15 +45,16 @@
 </div>
 
 
-<div>
+<div *ngIf="mod&&user">
 
-        <h1>Log In</h1>
-        <input type="email" name="E"  [(ngModel)]="userF.email" id="ki" placeholder="Email">
-        {{ user.email}}
-        <input type="password" name="P"  [(ngModel)]="userF.password" id="li" placeholder="password">
-        {{ user.password}}
-        <a href=""></a>
-        <button (click)="editUser()" style="background-color: rgb(0, 102, 105);border-radius: 10px;height: 2rem;">
+        <h1>modificar cuenta</h1>
+        <input type="email" name="E"  [(ngModel)]="userF.email" placeholder="Email" class="form" id="E">
+        <input type="text" [(ngModel)]="userF.fullName" placeholder="nombre completo" class="form" id="FN">
+        <input type="password" [(ngModel)]="userF.password" placeholder="escribe la nueva contraseña" class="form" id="P">        
+        <input type="number" [(ngModel)]="userF.phoneNumber" placeholder="Numero telefonico" class="form" id="pN">
+
+        <a  (click)="xd()">cancelar</a>
+        <button (click)="editUser()" id="FM" style="background-color: rgb(0, 102, 105);border-radius: 10px;height: 2rem;">
             Guardar cambios
         </button>
 
