@@ -17,7 +17,7 @@ export class LoginComponent{
   UserC: loginM = {
     fullName: '',
     email: '',
-    password:''
+    password:'',
   };
 
   constructor(private services: LoginService) {
@@ -57,14 +57,27 @@ export class LoginComponent{
     .subscribe(
       res => {
         console.log(res);
-        this.logUp = true;
+        this.logUp = false;
       },
       error => {
         console.log(error);
       });
 }
 
+deleteUser(id: any){
+  this.services.delete(id).subscribe(res =>{
+    console.log(res);
+    this.clearStorage();
+  },error=>{
+    console.log(error)
+  })
+}
 
+editUser(){
+  
+}
+
+  userF: loginM = this.user
   login: loginM = new loginM();
 }
 

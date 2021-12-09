@@ -1,4 +1,4 @@
-<!-- <div  *ngIf="!user">
+<div  *ngIf="!logUp&&!user">
 
     <form #loginF="ngForm" (ngSubmit)="loginM(loginF)">
         <h1>Log In</h1>
@@ -11,13 +11,13 @@
         </button>
     </form>
 
-</div> -->
+</div>
 
 
-<div *ngIf="!logUp&&!user">
-
-    <!-- <form #loginCreate="ngForm" (ngSubmit)="saveUser(loginCreate)"> -->
+<div *ngIf="logUp&&!user">
+    <form>
         <h1>logUp</h1>
+
         <input type="email" name="E"  [(ngModel)]="UserC.email"placeholder="Email">
         <input type="fullName" name="FN"  [(ngModel)]="UserC.fullName"placeholder="Nombre completo">
         <input type="password" name="P"  [(ngModel)]="UserC.password"placeholder="password">
@@ -27,8 +27,7 @@
         <button (click)="saveUser()">
             comprobar
         </button>
-    <!-- </form> -->
-
+    </form>
 </div>
 
 
@@ -37,5 +36,9 @@
     <h1 style="font-size: 3rem;" *ngIf="user">bienvenido {{user.fullName}}</h1>
 
     <button (click)="clearStorage()" style="height:3rem;border-radius: 15px;">cerrar sesion</button>
+    <br>
+    <button (click)="deleteUser(user._id)" style="background-color: brown;border-radius: 10px;height: 2rem;">eliminar usuario</button>
+
+    {{ user._id}}
 </div>
 

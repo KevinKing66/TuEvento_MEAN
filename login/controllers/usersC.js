@@ -4,10 +4,10 @@ const user = require("../models/users");
 
 
 
-async function BuscarUsurioName(req, res){
-    const name = req.params.name; 
+async function BuscarUsurioid(req, res){
+    const id = req.params._id; 
     try { 
-        const userdb =  await user.find({"fullName": name }); 
+        const userdb =  await user.find({"id": id }); 
         if (userdb){
             res.json(userdb)
         }
@@ -46,18 +46,21 @@ async function UpdateUser(req, res){
     } 
 }
 
-function DeleteUser(req, res){
+async function DeleteUser(req, res){
 
-    var iduser=req.params.id;
-    user.findByIdAndRemove(iduser, function(err, user){
-        if(err) {
-            return res.json(500, {
-            message: 'No hemos encontrado el usuario'
-            })
-        }else{
-            !iduser ? res.status(404).send({message:'El registro a buscar no se encuentra disponible'}) : res.status(200).send({result});
-        }
-    });
+    //posible error
+    const _id = req.params.id; 
+    try { 
+        
+        const userdb = await user.findByIdAndDelete({_id}); 
+        if(!userdb){ 
+            return res.status(400).json({ mensaje: 'No se encontró el id indicado', error }) 
+        } 
+            res.json(userdb); 
+    } 
+    catch (error) { 
+            return res.status(400).json({ mensaje: 'Ocurrio un error', error }) 
+    } 
 }
 
 async function Login(req, res){
@@ -73,4 +76,4 @@ async function Login(req, res){
 }
 
 
-module.exports = {BuscarUsurioName, BuscarUsuario, UpdateUser, DeleteUser, saveUser, Login};
+module.exports = {BuscarUsurioid, BuscarUsuario, UpdateUser, DeleteUser, saveUser, Login};
