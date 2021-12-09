@@ -19,21 +19,20 @@ export class LoginService {
   }
   
   create(UserC:loginM): Observable<Object>{
-    var res = "/created";
+    let res = "/created";
     return this.http.post(this.url+res, UserC);
    }
 
    delete(id: any){
-    var res = "/delete/";
+    let res = "/delete/";
     return this.http.delete(this.url+res+id)
    }
 
-  toAsk(id: string): Observable<any>{
-    var res = "/user/";
-    return this.http.get(this.url+res+id)
-  }
+
    
-  //  edit(id: any){
-  //    return this.http.edit
-  //  }
+   edit(id: string,user: JSON){
+     
+    let res = "/update/";
+     return this.http.put(this.url+res+id, user)
+   }
 }

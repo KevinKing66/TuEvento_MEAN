@@ -39,7 +39,7 @@ async function UpdateUser(req, res){
     const _id = req.params.id; 
     const body = req.body; 
     try { 
-        const usuarioDB = await Usuario.findByIdAndUpdate(_id, body, {new: true}); 
+        const usuarioDB = await user.findByIdAndUpdate(_id, body, {new: true}); 
         res.json(usuarioDB); 
     } catch (error) { 
         return res.status(400).json({ mensaje: 'Ocurrio un error', error }) 

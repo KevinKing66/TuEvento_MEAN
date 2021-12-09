@@ -39,6 +39,21 @@
     <br>
     <button (click)="deleteUser(user._id)" style="background-color: brown;border-radius: 10px;height: 2rem;">eliminar usuario</button>
 
-    {{ user._id}}
+    
+</div>
+
+
+<div>
+
+        <h1>Log In</h1>
+        <input type="email" name="E"  [(ngModel)]="userF.email" id="ki" placeholder="Email">
+        {{ user.email}}
+        <input type="password" name="P"  [(ngModel)]="userF.password" id="li" placeholder="password">
+        {{ user.password}}
+        <a href=""></a>
+        <button (click)="editUser()" style="background-color: rgb(0, 102, 105);border-radius: 10px;height: 2rem;">
+            Guardar cambios
+        </button>
+
 </div>
 

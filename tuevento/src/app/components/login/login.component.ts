@@ -74,10 +74,15 @@ deleteUser(id: any){
 }
 
 editUser(){
-  
+  let id = this.user._id;
+  this.services.edit(id, this.user).subscribe(res=>{
+    console.log(res);
+  },error=>{
+    console.log(error)
+  });
 }
 
-  userF: loginM = this.user
+  userF: loginM = this.user;
   login: loginM = new loginM();
 }
 
