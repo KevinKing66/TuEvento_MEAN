@@ -15,7 +15,7 @@ export class VieweventsComponent implements OnInit {
   constructor(private viewEventService: VieweventsService) {
     //arrow fun. para mostrar info, y mostrar si hay errores
     
-    if(this.toAsk){
+    if(!this.toAsk){
       
     this.viewEventService.getEventU("el cielo")
     .subscribe(data => {
