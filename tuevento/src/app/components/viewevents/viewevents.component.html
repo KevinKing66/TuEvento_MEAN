@@ -1,4 +1,8 @@
-<div>
+<div id="buscar">
+    <input type="search" name="SC" id="SH" placeholder="¿en que ciudad estas buscando el evento?">
+    <button (click)="toAskF()">buscar</button>
+</div>
+<div *ngIf="!toAsk">
     <dl>
         <dt *ngFor="let e of listEvents">
             <div class="image">
@@ -10,7 +14,9 @@
             <p> {{e.description }}
             </p>
             
-            <button>eliminar</button>
+            <button class="del">eliminar</button>
+
+            <button  class="agg">asistir</button>
         </dt>
     </dl>
 </div>

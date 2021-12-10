@@ -3,9 +3,9 @@ const { find } = require("../models/events");
 const evento = require("../models/events");
 
 async function BuscareventName(req, res){
-    const name = req.params.name; 
+    const ubicacion = req.params.ubicacion; 
     try { 
-        const eventodb =  await evento.find({"fullName": name }); 
+        const eventodb =  await evento.find({"ubicacion": ubicacion }); 
         if (eventodb){
             res.json(eventodb)
         }
