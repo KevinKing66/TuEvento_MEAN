@@ -39,14 +39,55 @@ dl{
     flex-wrap: wrap;
     flex-grow: 2;
 }
-dt{
-   border: 2px solid rgba(206, 206, 206, 0.446); 
-   border-radius: 10px;
-   margin: 5px;
-   max-width: 90vw;
-   background-color: rgba(0, 0, 0, 0.898);
-   box-shadow: -0.4rem 3px rgba(0, 0, 0, 0.638),-0.4em 0 0.4em rgba(41, 41, 41, 0.618);
+@keyframes Ro {
+    0%{
+        border: 3px solid  rgb(43, 226, 202);
+    }25%{
+        border: 3px solid  white;
+    }50%{
+        border: 3px solid  blueviolet;
+    }70%{
+        border: 3px solid  white;
+    }
 }
+    
+
+dt{
+    text-align: center;
+    background: rgba(0, 8, 24, 0.349);
+    height: 15rem;
+    min-width: 30rem;
+    max-width: 90%;
+    z-index: 2;
+    border: 3px solid transparent;
+    border-radius: 25px 0;
+    overflow: hidden;
+    position: sticky;
+    display: flex;
+    flex-direction: column;
+    top: 5px;
+    margin: 1rem;
+    animation: Ro 4s infinite linear;
+}
+
+dt::before{
+    content:'';
+    width: 110%;
+    height: 5rem;
+    z-index: -2.1;
+    position: fixed;
+}
+
+dt::after{
+    content:'';
+    position: absolute;
+    inset: 2px;
+    z-index: 0.5;
+    border-radius: 25px 0;
+    backdrop-filter: blur(25px);
+}
+
+
 #ubicacion{
     position: relative;
     z-index: 10;
