@@ -10,24 +10,13 @@ import { VieweventsService } from 'src/app/services/viewevents.service';
 export class VieweventsComponent implements OnInit {
 
   listEvents: EventoM[] = [];
+  listEventsFiltre: EventoM[] = [];
   toAsk: boolean = false;
 
   constructor(private viewEventService: VieweventsService) {
     //arrow fun. para mostrar info, y mostrar si hay errores
     
-    if(!this.toAsk){
-      
-    this.viewEventService.getEventU("el cielo")
-    .subscribe(data => {
-      var x = 0;
-      while (x < (data.length)){
-        this.listEvents.push(data[x]);
-        x++;
-}
-    }, error => {
-      console.log(error)
-    })
-   }else{
+
     this.viewEventService.getEvent()
     .subscribe(data => {
       var x = 0;
@@ -39,7 +28,7 @@ export class VieweventsComponent implements OnInit {
       console.log(error)
     })
 
-   }
+   
 }
   ngOnInit(): void {
   }

@@ -17,12 +17,5 @@ export class EventoM{
     this.fecha = fecha;
     this.precio = precio;
 }
-
- }
- export class UserM {
-  _id?: String;
-  email: String = "";
-  fullName: String ='';
-  phoneNumber?: Number;
-  password: String = ''; 
+ 
  }
