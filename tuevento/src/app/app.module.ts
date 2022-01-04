@@ -11,6 +11,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { RegEventoComponent } from './components/reg-evento/reg-evento.component';
 import { VieweventsComponent } from './components/viewevents/viewevents.component';
+import { ImgComponent } from './components/img/img.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { VieweventsComponent } from './components/viewevents/viewevents.componen
     FooterComponent,
     HomeComponent,
     RegEventoComponent,
-    VieweventsComponent
+    VieweventsComponent,
+    ImgComponent
   ],
   imports: [
     BrowserModule,

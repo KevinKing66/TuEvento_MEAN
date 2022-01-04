@@ -3,7 +3,19 @@
         <div class="xd" *ngIf="!submitted">
             
             <h1> registrar eventos</h1>
-            
+
+            <div class="form-group" id="f1">
+                <label for="img">Imagen del poster</label>
+                <input
+                    type="file"
+                    class="form-control"
+                    id="img"
+                    required
+                    [(ngModel)]="evento.poster"
+                    name="poster" aria-required
+                />
+            </div>
+
             <div class="form-group" id="f1">
                 <label for="nombre">Nombre</label>
                 <input
@@ -14,7 +26,9 @@
                     [(ngModel)]="evento.nombre"
                     name="nombre" aria-required
                 />
-            </div>
+            </div>        
+            
+
     
             <div class="form-group" id="f2">
                 <label for="descripcion">Descripcion</label>
@@ -73,36 +87,3 @@
       </div>
     </div>
   </div>
-
-
-
-
-
-
-
-<!-- <div>
-
-
-    <form #EventsF="ngForm" (ngSubmit)="events(EventsF)">
-        <h1>Creacion de eventos</h1>
-        <div class="NE">
-            <label for="NE">Nombre Evento</label>
-            <input type="text" name="NE">
-        </div>
-
-        <div class="DE">
-            cd tuevento
-            cd <label for="DE" class="DE">Descripcion Evento</label>
-            <input type="text" name="NE" class="DE" placeholder="descripcion" [(ngModel)]="EventsF.Nombre")]>
-        </div>
-        <div class="FE">
-            <label for="FE" class="FE">fecha Evento</label>
-            <input type="date" name="FE">
-        </div>
-
-        <button type="submit" [disabled]="!EventsF.form.valid">
-            crear
-        </button>
-    </form>
-
-</div> -->

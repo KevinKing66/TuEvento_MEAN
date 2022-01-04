@@ -1,6 +1,5 @@
-const { response } = require("express");
-const { find } = require("../models/events");
 const evento = require("../models/events");
+
 
 async function BuscareventName(req, res){
     const ubicacion = req.params.ubicacion; 
@@ -24,12 +23,78 @@ async function BuscarEvent(req, res){
     }
 }
 
+// function saveevento(req,res){
+    
+
+//     var newEvent = new evento(req.body);
+
+//     // saveImage(req, res)
+//     // console.log(uploadPath)
+//     // uploadPath  ? console.log("todo bien") : newEvent.img = "";
+//     // newEvent.img = uploadPath;
+
+//     newEvent.save((err,result)=>{
+//     res.status(200).send({message:result});
+//     });
+//     }
+function saveImage(req, res){
+    let sampleFile;
+    console.log("saveimg")
+    if (!req.files || Object.keys(req.files).length === 0) {
+        return res.status(400).send('No files were uploaded.');
+}
+
+
+sampleFile = req.files.poster;
+uploadPath = './imagenes/' + sampleFile.name;
+
+// console.log(sampleFile)
+try{
+    sampleFile.mv(uploadPath, function(err) {
+        if (err)
+            return res.status(500).send(err);
+            res.send('File uploaded!'+ sampleFile.name);
+    
+    });}catch (error){
+      console.log("ha salido algo mal");
+  }
+
+};
+
 function saveevento(req,res){
+    let uploadPath;
+    let sampleFile;
+
+    console.log("saveimg")
+    if (!req.files || Object.keys(req.files).length === 0) {
+        return res.status(400).send('No files were uploaded.');
+}
+
+
+sampleFile = req.files.poster;
+uploadPath = './imagenes/' + sampleFile.name;
+
+// console.log(sampleFile)
+try{
+    sampleFile.mv(uploadPath, function(err) {
+        if (err)
+            return res.status(500).send(err);
+            res.send('File uploaded!'+ sampleFile.name);
+    
+    });}catch (error){
+      console.log("ha salido algo mal");
+  }
+
     var newEvent = new evento(req.body);
+
+    poster = sampleFile.name;
+    newEvent.poster = '/imagenes/' + poster;
+
     newEvent.save((err,result)=>{
     res.status(200).send({message:result});
     });
     }
+    
 
 
 
@@ -61,23 +126,6 @@ async function Deleteevento(req, res){
     } 
 }
 
-function saveImage(req, res){
-    let sampleFile;
-    let uploadPath;
-
-    if (!req.files || Object.keys(req.files).length === 0) {
-        return res.status(400).send('No files were uploaded.');
-}
-
-sampleFile = req.files.img;
-uploadPath = './imagenes/' + sampleFile.name;
-
-sampleFile.mv(uploadPath, function(err) {
-  if (err)
-    return res.status(500).send(err);
-    res.send('File uploaded!');
-  });
-};
 
 
 module.exports = {BuscareventName, BuscarEvent, Updateevento, Deleteevento, saveevento, saveImage};

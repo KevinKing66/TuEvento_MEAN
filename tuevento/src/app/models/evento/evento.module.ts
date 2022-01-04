@@ -9,13 +9,15 @@ export class EventoM{
   fecha: string;
   precio: Number = 0;
   hora: any;
+  poster? : any;
 
-  constructor(nombre: string, description: string, fecha: string, ubicacion: string, precio: number, public img?:string ){
+  constructor(nombre: string, description: string, fecha: string, ubicacion: string, precio: number,  poster?:any ){
     this.nombre = nombre;
     this.description = description;
     this.ubicacion = ubicacion;
     this.fecha = fecha;
     this.precio = precio;
+    this.poster = poster
 }
  
  }
