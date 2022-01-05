@@ -23,7 +23,9 @@ export class ImgComponent implements OnInit {
     // event.target.files[0]
     
     console.log(poster)
-    this.service.img(poster).subscribe()
+    this.service.img(poster).subscribe(
+      (res)=> {console.log(res)}
+    )
   }
 
 
