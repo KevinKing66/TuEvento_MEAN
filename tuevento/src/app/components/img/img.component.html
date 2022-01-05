@@ -1,4 +1,10 @@
 <p>img works!</p>
 <div>
-    <input (change)="MImg($event)" type="file">
+    <input (change)="onFileSelected($event)" type="file">
+
 </div>
+<br /><br />
+{{ file }}
+<br>
+base64 Output : <br />
+{{base64Output}}

@@ -62,37 +62,39 @@ try{
 };
 
 function saveevento(req,res){
-    let uploadPath;
-    let sampleFile;
+    console.log(req.body)
+//     let uploadPath;
+//     let sampleFile;
+//     console.log("hola")
+//     console.log("saveimg")
 
-    console.log("saveimg")
-    if (!req.files || Object.keys(req.files).length === 0) {
-        return res.status(400).send('No files were uploaded.');
-}
+//     if (!req.files || Object.keys(req.files).length === 0) {
+//         return res.status(400).send('No files were uploaded.');
+// }
 
 
-sampleFile = req.files.poster;
-uploadPath = './imagenes/' + sampleFile.name;
+// sampleFile = req.files;
+// uploadPath = './imagenes/' + sampleFile.name;
 
-// console.log(sampleFile)
-try{
-    sampleFile.mv(uploadPath, function(err) {
-        if (err)
-            return res.status(500).send(err);
-            res.send('File uploaded!'+ sampleFile.name);
+// // console.log(sampleFile)
+// try{
+//     sampleFile.mv(uploadPath, function(err) {
+//         if (err)
+//             return res.status(500).send(err);
+//             res.send('File uploaded!'+ sampleFile.name);
     
-    });}catch (error){
-      console.log("ha salido algo mal");
-  }
+//     });}catch (error){
+//       console.log("ha salido algo mal");
+//   }
 
-    var newEvent = new evento(req.body);
+    // var newEvent = new evento(req.body);
 
-    poster = sampleFile.name;
-    newEvent.poster = '/imagenes/' + poster;
+    // poster = sampleFile.name;
+    // newEvent.poster = '/imagenes/' + poster;
 
-    newEvent.save((err,result)=>{
-    res.status(200).send({message:result});
-    });
+    // newEvent.save((err,result)=>{
+    // res.status(200).send({message:result});
+    // });
     }
     
 
