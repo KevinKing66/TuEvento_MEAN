@@ -2,9 +2,7 @@ var express = require('express'), app = express();
 const cors = require('cors');
 //configurar cabeceras y cors 
 
-// app.use(express.json());
-// app.use(express.urlencoded())
-// app.use(express.urlencoded({ limit: '100MB', extended: true }));
+
 app.use(
     express.json({
         limit: '20mb'
@@ -23,5 +21,6 @@ app.use(
 
 app.use(cors())
 app.use(require('./routers/router'))
+app.use('/imagenes', express.static('public'))
 
 module.exports = app;

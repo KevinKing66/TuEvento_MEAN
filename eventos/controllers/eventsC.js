@@ -1,5 +1,6 @@
+
 const evento = require("../models/events");
-var NF = "";
+
 
 async function BuscareventName(req, res){
     const ubicacion = req.params.ubicacion; 
@@ -23,6 +24,11 @@ async function BuscarEvent(req, res){
     }
 }
 
+function files(req,res){
+    let ruta = __dirname.replace('controllers','imagenes/')
+    res.sendFile(ruta+req.params.file)
+}
+
 
 
 function saveevento(req,res){
@@ -33,9 +39,8 @@ function saveevento(req,res){
         let seed                            = crypto.randomBytes(20);
         let uniqueSHA1String                = crypto.createHash('sha1').update(seed).digest('hex');
         let uniqueRandomImageName  = `imagenes/${uniqueSHA1String}.jpg`;
-        NF = uniqueRandomImageName;
+        let NF = uniqueRandomImageName;
         
-        console.log(NF)
         let xd = data.replace(/^data:image\/\w+;base64,/, '');
 
 
@@ -90,4 +95,4 @@ async function Deleteevento(req, res){
 
 
 
-module.exports = {BuscareventName, BuscarEvent, Updateevento, Deleteevento, saveevento};
+module.exports = {BuscareventName, BuscarEvent, Updateevento, Deleteevento, saveevento, files};

@@ -7,14 +7,19 @@
         <dt *ngFor="let e of listEvents">
             <div class="image">
                 <h1 id="ubicacion"> {{e.ubicacion}} </h1>
-                <img src="" alt="">
+                <img [(src)]="'http://localhost:1001/'+e.poster" [(alt)]="e.poster">
+
             </div>
             <h1>  {{ e.nombre }}</h1>
             <h2>    {{e.fecha}} {{e.hora}}</h2>
             
+            <button class="more">detalles</button>
+
+            <div class="buttons">
             <button class="del">eliminar</button>
 
             <button  class="agg">asistir</button>
+            </div>
         </dt>
     </dl>
 </div>
