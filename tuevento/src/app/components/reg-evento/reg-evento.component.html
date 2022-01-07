@@ -6,14 +6,9 @@
 
             <div class="form-group" id="f1">
                 <label for="img">Imagen del poster</label>
-                <input
-                    type="file"
-                    class="form-control"
-                    id="img"
-                    required
-                    [(ngModel)]="evento.poster"
-                    name="poster" aria-required
-                />
+                
+    <input (change)="onFileSelected($event)" type="file">
+
             </div>
 
             <div class="form-group" id="f1">

@@ -10,7 +10,6 @@ import { RegEventService } from 'src/app/services/reg-event.service';
 export class ImgComponent implements OnInit {
 
   file : any;
-  xd : any;
 
   constructor(private service: RegEventService) { }
 
@@ -31,7 +30,7 @@ export class ImgComponent implements OnInit {
 
   onFileSelected(event:any) {
     //guardamos el arhivo recibido en una var
-    var file = event.target.files[0];
+    let file = event.target.files[0];
     //comprobamos que este funcionando
     console.log(file)
     //convertimos el archivo a base64
@@ -52,8 +51,6 @@ export class ImgComponent implements OnInit {
     this.service.img(poster).subscribe(
       (res)=> {console.log(res)}
     )
- 
-
   }
 
 

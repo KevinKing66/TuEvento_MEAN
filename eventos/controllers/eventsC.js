@@ -1,4 +1,5 @@
 const evento = require("../models/events");
+var NF = "";
 
 async function BuscareventName(req, res){
     const ubicacion = req.params.ubicacion; 
@@ -22,39 +23,25 @@ async function BuscarEvent(req, res){
     }
 }
 
-// function saveevento(req,res){
-    
-
-//     var newEvent = new evento(req.body);
-
-//     // saveImage(req, res)
-//     // console.log(uploadPath)
-//     // uploadPath  ? console.log("todo bien") : newEvent.img = "";
-//     // newEvent.img = uploadPath;
-
-//     newEvent.save((err,result)=>{
-//     res.status(200).send({message:result});
-//     });
-//     }
 
 
 function saveevento(req,res){
-    let data = req.body.files
+    let data = req.body.poster.files
 
-    try
-    {
-                 // Generamos un nnombre aleatorio
-                 var crypto                          = require('crypto');
-                 var seed                            = crypto.randomBytes(20);
-                 var uniqueSHA1String                = crypto.createHash('sha1').update(seed).digest('hex');
-        var uniqueRandomImageName  = `imagenes/${uniqueSHA1String}.jpg`
+        // Generamos un nnombre aleatorio
+        let crypto                          = require('crypto');
+        let seed                            = crypto.randomBytes(20);
+        let uniqueSHA1String                = crypto.createHash('sha1').update(seed).digest('hex');
+        let uniqueRandomImageName  = `imagenes/${uniqueSHA1String}.jpg`;
+        NF = uniqueRandomImageName;
         
+        console.log(NF)
+        let xd = data.replace(/^data:image\/\w+;base64,/, '');
+
 
         // guardamos la imagen
 
-        var xd = data.replace(/^data:image\/\w+;base64,/, '');
-        try
-        {
+        try{
         require('fs').writeFile(uniqueRandomImageName, xd,{encoding: 'base64'}, ()=> console.log("bueno"));
         }
         catch(error)
@@ -62,17 +49,9 @@ function saveevento(req,res){
             console.log('ERROR:', error);
         }
 
-    }
-    catch(error)
-    {
-        console.log('ERROR:', error);
-    }
-
-
     var newEvent = new evento(req.body);
-
-    newEvent.poster = uniqueRandomImageName;
-
+    newEvent.poster = NF;
+        console.log(newEvent.poster)
     newEvent.save((err,result)=>{
     res.status(200).send({message:result});
     });
