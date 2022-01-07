@@ -11,8 +11,8 @@ export class VieweventsComponent implements OnInit {
 
   listEvents: EventoM[] = [];
   listEventsFiltre: EventoM[] = [];
-  toAsk: boolean = false;
-  
+  toAsk: boolean  = sessionStorage.getItem("toAsk")=="true" ? true : false;
+  creador: boolean = false
 
   constructor(private viewEventService: VieweventsService) {
     //arrow fun. para mostrar info, y mostrar si hay errores
@@ -37,13 +37,20 @@ export class VieweventsComponent implements OnInit {
 
   async toAskF(){
     this.toAsk ? false : true;
-    let x= 0;
-    console.log(this.listEvents.length)
-    while(x < this.listEvents.length){
-      if(this.listEvents[x].ubicacion == "popayan"){
-        console.log(this.listEvents[x])
+    let x = this.toAsk ? "true" : "false";
+    sessionStorage.setItem("toAsk", x)
+    let i= 0;
+    while(i < this.listEvents.length){
+      if(this.listEvents[i].ubicacion == "bogota"){
+        this.listEventsFiltre.push(this.listEvents[i])
+        console.log(this.listEventsFiltre[i]);
+      }else{
+        console.log("no es");
       }
-      x++
+      i++;
     }
+    let y = "'" + this.listEventsFiltre + "'"
+    sessionStorage.setItem("filtro", y)
+
   }
 }
