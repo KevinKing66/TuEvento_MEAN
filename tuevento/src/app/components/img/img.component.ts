@@ -10,33 +10,14 @@ import { RegEventService } from 'src/app/services/reg-event.service';
 export class ImgComponent implements OnInit {
 
   file : any;
-  
-  base64Output = "";
+  xd : any;
 
   constructor(private service: RegEventService) { }
 
   ngOnInit(): void {
   }
 
-  MImg(base64:string){
-    let poster = {file : this.base64Output}
-    // event.target.files[0]
-    
-    console.log(poster)
-    this.service.img(poster).subscribe(
-      (res)=> {console.log(res)}
-    )
-  }
-
-
-  onFileSelected(event:any) {
-    var file = event.target.files[0]
-    this.convertFile(file).subscribe((base64: string) => {
-      this.base64Output = base64;
-      this.MImg(base64)
-    });
-  }
-
+  //esta funcion concierte los archivos en base64
   convertFile(file : File) : Observable<string> {
     const result = new ReplaySubject<string>(1);
     const reader = new FileReader();
@@ -47,4 +28,36 @@ export class ImgComponent implements OnInit {
     }
     return result;
   }
+
+  onFileSelected(event:any) {
+    //guardamos el arhivo recibido en una var
+    var file = event.target.files[0];
+    //comprobamos que este funcionando
+    console.log(file)
+    //convertimos el archivo a base64
+    this.convertFile(file).subscribe((base64: string) => {
+      //comprobamos que base64 y base64... esten funcionando
+      console.log(base64)
+      //llamamos la funcion que manda la info al back
+      this.MImg(base64);
+    });
+  }
+
+  MImg(x:string){
+    let poster = {files : x}
+
+    //vemos que el objecto no este vacio
+    console.log(poster)
+    //enviamos al API
+    this.service.img(poster).subscribe(
+      (res)=> {console.log(res)}
+    )
+ 
+
+  }
+
+
+
+
+
 }

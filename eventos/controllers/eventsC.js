@@ -1,6 +1,5 @@
 const evento = require("../models/events");
 
-
 async function BuscareventName(req, res){
     const ubicacion = req.params.ubicacion; 
     try { 
@@ -37,64 +36,46 @@ async function BuscarEvent(req, res){
 //     res.status(200).send({message:result});
 //     });
 //     }
-function saveImage(req, res){
-    let sampleFile;
-    console.log("saveimg")
-    if (!req.files || Object.keys(req.files).length === 0) {
-        return res.status(400).send('No files were uploaded.');
-}
 
-
-sampleFile = req.files.poster;
-uploadPath = './imagenes/' + sampleFile.name;
-
-// console.log(sampleFile)
-try{
-    sampleFile.mv(uploadPath, function(err) {
-        if (err)
-            return res.status(500).send(err);
-            res.send('File uploaded!'+ sampleFile.name);
-    
-    });}catch (error){
-      console.log("ha salido algo mal");
-  }
-
-};
 
 function saveevento(req,res){
-    console.log(req.body)
-//     let uploadPath;
-//     let sampleFile;
-//     console.log("hola")
-//     console.log("saveimg")
+    let data = req.body.files
 
-//     if (!req.files || Object.keys(req.files).length === 0) {
-//         return res.status(400).send('No files were uploaded.');
-// }
+    try
+    {
+                 // Generamos un nnombre aleatorio
+                 var crypto                          = require('crypto');
+                 var seed                            = crypto.randomBytes(20);
+                 var uniqueSHA1String                = crypto.createHash('sha1').update(seed).digest('hex');
+        var uniqueRandomImageName  = `imagenes/${uniqueSHA1String}.jpg`
+        
+
+        // guardamos la imagen
+
+        var xd = data.replace(/^data:image\/\w+;base64,/, '');
+        try
+        {
+        require('fs').writeFile(uniqueRandomImageName, xd,{encoding: 'base64'}, ()=> console.log("bueno"));
+        }
+        catch(error)
+        {
+            console.log('ERROR:', error);
+        }
+
+    }
+    catch(error)
+    {
+        console.log('ERROR:', error);
+    }
 
 
-// sampleFile = req.files;
-// uploadPath = './imagenes/' + sampleFile.name;
+    var newEvent = new evento(req.body);
 
-// // console.log(sampleFile)
-// try{
-//     sampleFile.mv(uploadPath, function(err) {
-//         if (err)
-//             return res.status(500).send(err);
-//             res.send('File uploaded!'+ sampleFile.name);
-    
-//     });}catch (error){
-//       console.log("ha salido algo mal");
-//   }
+    newEvent.poster = uniqueRandomImageName;
 
-    // var newEvent = new evento(req.body);
-
-    // poster = sampleFile.name;
-    // newEvent.poster = '/imagenes/' + poster;
-
-    // newEvent.save((err,result)=>{
-    // res.status(200).send({message:result});
-    // });
+    newEvent.save((err,result)=>{
+    res.status(200).send({message:result});
+    });
     }
     
 
@@ -130,4 +111,4 @@ async function Deleteevento(req, res){
 
 
 
-module.exports = {BuscareventName, BuscarEvent, Updateevento, Deleteevento, saveevento, saveImage};
+module.exports = {BuscareventName, BuscarEvent, Updateevento, Deleteevento, saveevento};
