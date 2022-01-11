@@ -12,8 +12,8 @@ router.get('/imagenes/:file', eventoC.files)
 
 
 router.post('/created', eventoC.saveevento);
-router.post('/evento/subscribe', eventoC.asistir)
 
+router.put('/evento/subscribe/:id', eventoC.asistir)
 router.put('/update/:id', eventoC.Updateevento);
 router.put('/d/:id', eventoC.desactivate)
 

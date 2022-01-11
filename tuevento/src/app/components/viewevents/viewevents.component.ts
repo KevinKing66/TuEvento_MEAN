@@ -25,8 +25,6 @@ export class VieweventsComponent implements OnInit {
       while (x < (data.length)){
         data[x].asistencias= data[x].asistentes.length;
         data[x].creador == JSON.parse(this.m)._id ? data[x].creador = true : data[x].creador = false; 
-        console.log(data[x].creadorB);
-        console.log(data);
         this.listEvents.push(data[x]);
         x++;
 }
@@ -55,11 +53,12 @@ export class VieweventsComponent implements OnInit {
   asistir(e: EventoM){
     const nombre =  JSON.parse(this.m).fullName;
     const id = JSON.parse(this.m)._id;
+    const idE =  e._id
     const asistente = { "id": id, "fullName": nombre};
     if(!e.asistentes.includes(asistente)){
     e.asistentes.push(asistente);
     asistente.fullName ? alert("has sido registrado de manera correcta") : alert("asegurate de inicia session para poder inscribirte a los evento");
-    this.viewEventService.attend(asistente).subscribe( (res)=> console.log(res));
+    this.viewEventService.attend(e, asistente).subscribe((res)=> console.log(res));
     }
   }
 

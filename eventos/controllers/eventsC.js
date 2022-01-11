@@ -119,25 +119,30 @@ async function desactivate(req, res){
 async function asistir(req, res){
 
     const _id = req.params.id; 
-    const asistente= req.body.asistente
+    const asistente= req.body
     try {  
-        const resultado =  await evento.findOne({"_id":_id}); 
+        const resultado =  await evento.findOne({"_id":_id});
+        if (resultado.asistentes.includes(asistente)){
         resultado.asistentes.push(asistente);
-        if (resultado){
-            //en la posicion 0 estara el objeto que usaremos
-            const _id = resultado._id;
+        console.log(resultado);
 
-            //reutilizamos la la informacion ya existente, pero cambiamos el valos de "estado" a false
-            resultado.activo ? resultado.activo = false : resultado.activo = true;
-            const body = resultado;
+            if (resultado){
+                //en la posicion 0 estara el objeto que usaremos
+                const _id = resultado._id;
 
-        //     //usando la informacion ant, buscara el objeto y se guardara el cambio hecho
-            const DB = await evento.findByIdAndUpdate(_id, body, {new: true}); 
-            res.json(DB);
+                //reutilizamos la la informacion ya existente, pero cambiamos el valos de "estado" a false
+                resultado.activo ? resultado.activo = false : resultado.activo = true;
+                const body = resultado;
+
+                //usando la informacion ant, buscara el objeto y se guardara el cambio hecho
+                const DB = await evento.findByIdAndUpdate(_id, body, {new: true}); 
+                res.json(DB);
+            }
+
         }
     } 
     catch (error) { 
-        return res.status(400).json({ mensaje: 'Lo sentimos, no existe el producto que estas buscando o escribiste su nombre mal' });
+        return res.status(400).json({ mensaje: 'Hemo tenido un error al tratar de hacer esta ooperacion'});
     } 
 }
 

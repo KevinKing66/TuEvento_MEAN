@@ -14,8 +14,8 @@ export class VieweventsService {
   getEvent(): Observable<any>{
     return this.http.get(this.url);
   }
-  attend(user:any){
-    return this.http.post(this.url+"/subscribe", user);
+  attend(e:EventoM, asistente: object){
+    return this.http.put(this.url+"/subscribe/"+e._id, asistente);
   }
   
 }
