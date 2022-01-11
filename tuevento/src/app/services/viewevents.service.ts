@@ -12,7 +12,10 @@ export class VieweventsService {
   constructor(private http: HttpClient) { }
 
   getEvent(): Observable<any>{
-    return this.http.get(this.url)
+    return this.http.get(this.url);
+  }
+  attend(user:any){
+    return this.http.post(this.url+"/subscribe", user);
   }
   
 }

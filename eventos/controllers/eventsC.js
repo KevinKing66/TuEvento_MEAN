@@ -7,11 +7,11 @@ async function BuscareventName(req, res){
     try { 
         const eventodb =  await evento.find({"ubicacion": ubicacion }); 
         if (eventodb){
-            res.json(eventodb)
+            res.json(eventodb);
         }
     } 
     catch (error) { 
-        return res.status(400).json({ mensaje: 'Ocurrio un error', error })
+        return res.status(400).json({ mensaje: 'Ocurrio un error', error });
     } 
 }
 
@@ -20,19 +20,19 @@ async function BuscarEvent(req, res){
         const eventodb = await evento.find();
         res.json(eventodb)
     }catch(error){
-        return res.status(400).json({ joa : 'ha ocurrido un error'})
+        return res.status(400).json({ joa : 'ha ocurrido un error'});
     }
 }
 
 function files(req,res){
-    let ruta = __dirname.replace('controllers','imagenes/')
-    res.sendFile(ruta+req.params.file)
+    let ruta = __dirname.replace('controllers','imagenes/');
+    res.sendFile(ruta+req.params.file);
 }
 
 
 
 function saveevento(req,res){
-    let data = req.body.poster.files
+    let data = req.body.poster.files;
 
         // Generamos un nnombre aleatorio
         let crypto                          = require('crypto');
@@ -56,7 +56,7 @@ function saveevento(req,res){
 
     var newEvent = new evento(req.body);
     newEvent.poster = NF;
-        console.log(newEvent.poster)
+        console.log(newEvent.poster);
     newEvent.save((err,result)=>{
     res.status(200).send({message:result});
     });
@@ -72,24 +72,24 @@ async function Updateevento(req, res){
         const eventoDB = await evento.findByIdAndUpdate(_id, body, {new: true}); 
         res.json(eventoDB); 
     } catch (error) { 
-        return res.status(400).json({ mensaje: 'Ocurrio un error', error }) 
+        return res.status(400).json({ mensaje: 'Ocurrio un error', error }) ;
     } 
 }
 
 async function Deleteevento(req, res){
 
-    //posible error
+
     const _id = req.params.id; 
     try { 
         
         const eventoDB = await evento.findByIdAndDelete({_id}); 
         if(!eventoDB){ 
-            return res.status(400).json({ mensaje: 'No se encontró el id indicado', error }) 
+            return res.status(400).json({ mensaje: 'No se encontró el id indicado', error });
         } 
             res.json(eventoDB); 
     } 
     catch (error) { 
-            return res.status(400).json({ mensaje: 'Ocurrio un error', error }) 
+            return res.status(400).json({ mensaje: 'Ocurrio un error', error });
     } 
 }
 
@@ -104,8 +104,32 @@ async function desactivate(req, res){
             const _id = resultado._id;
 
             //reutilizamos la la informacion ya existente, pero cambiamos el valos de "estado" a false
-            resultado.activo ? resultado.activo = false : resultado.activo = true
-            const body = resultado
+            resultado.activo ? resultado.activo = false : resultado.activo = true;
+            const body = resultado;
+
+        //     //usando la informacion ant, buscara el objeto y se guardara el cambio hecho
+            const DB = await evento.findByIdAndUpdate(_id, body, {new: true}); 
+            res.json(DB);
+        }
+    } 
+    catch (error) { 
+        return res.status(400).json({ mensaje: 'Lo sentimos, no existe el producto que estas buscando o escribiste su nombre mal' });
+    } 
+}
+async function asistir(req, res){
+
+    const _id = req.params.id; 
+    const asistente= req.body.asistente
+    try {  
+        const resultado =  await evento.findOne({"_id":_id}); 
+        resultado.asistentes.push(asistente);
+        if (resultado){
+            //en la posicion 0 estara el objeto que usaremos
+            const _id = resultado._id;
+
+            //reutilizamos la la informacion ya existente, pero cambiamos el valos de "estado" a false
+            resultado.activo ? resultado.activo = false : resultado.activo = true;
+            const body = resultado;
 
         //     //usando la informacion ant, buscara el objeto y se guardara el cambio hecho
             const DB = await evento.findByIdAndUpdate(_id, body, {new: true}); 
@@ -120,4 +144,4 @@ async function desactivate(req, res){
 
 
 
-module.exports = {BuscareventName, BuscarEvent, Updateevento, Deleteevento, saveevento, files, desactivate};
+module.exports = {BuscareventName, BuscarEvent, Updateevento, Deleteevento, saveevento, files, desactivate, asistir};
