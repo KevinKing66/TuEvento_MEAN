@@ -21,7 +21,19 @@
                     [(ngModel)]="evento.nombre"
                     name="nombre" aria-required
                 />
-            </div>        
+            </div>  
+            
+            <div class="form-group" id="f1">
+                <label for="numeroAsistentes">numeroAsistentes</label>
+                <input
+                    type="number"
+                    class="form-control"
+                    id="numeroAsistentes"
+                    required
+                    [(ngModel)]="evento.numeroAsistentes"
+                    name="numeroAsistentes" aria-required
+                />
+            </div>  
             
 
     
@@ -70,7 +82,7 @@
 
             <br>
 
-            <div class="but" *ngIf="evento.nombre!='' && evento.description!='' && evento.ubicacion!=''">
+            <div class="but" *ngIf="evento.nombre!='' && evento.description!='' && evento.ubicacion!='' && evento.poster!='' ">
                 <button (click)="saveEvento()" class="btn btn-success">Enviar</button> 
             </div>
 

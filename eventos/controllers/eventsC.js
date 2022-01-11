@@ -69,7 +69,7 @@ async function Updateevento(req, res){
     const _id = req.params.id; 
     const body = req.body; 
     try { 
-        const eventoDB = await events.findByIdAndUpdate(_id, body, {new: true}); 
+        const eventoDB = await evento.findByIdAndUpdate(_id, body, {new: true}); 
         res.json(eventoDB); 
     } catch (error) { 
         return res.status(400).json({ mensaje: 'Ocurrio un error', error }) 
@@ -94,5 +94,30 @@ async function Deleteevento(req, res){
 }
 
 
+async function desactivate(req, res){
 
-module.exports = {BuscareventName, BuscarEvent, Updateevento, Deleteevento, saveevento, files};
+    const _id = req.params.id; 
+    try { 
+        const resultado =  await evento.findOne({"_id":_id}); 
+        if (resultado){
+            //en la posicion 0 estara el objeto que usaremos
+            const _id = resultado._id;
+
+            //reutilizamos la la informacion ya existente, pero cambiamos el valos de "estado" a false
+            resultado.activo ? resultado.activo = false : resultado.activo = true
+            const body = resultado
+
+        //     //usando la informacion ant, buscara el objeto y se guardara el cambio hecho
+            const DB = await evento.findByIdAndUpdate(_id, body, {new: true}); 
+            res.json(DB);
+        }
+    } 
+    catch (error) { 
+        return res.status(400).json({ mensaje: 'Lo sentimos, no existe el producto que estas buscando o escribiste su nombre mal' });
+    } 
+}
+
+
+
+
+module.exports = {BuscareventName, BuscarEvent, Updateevento, Deleteevento, saveevento, files, desactivate};

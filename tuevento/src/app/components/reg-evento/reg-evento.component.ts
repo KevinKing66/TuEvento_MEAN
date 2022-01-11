@@ -14,14 +14,16 @@ export class RegEventoComponent{
   
   file : any;
   evento: EventoM = {
-  nombre: '',
-  ubicacion: '',
-  description: '',
-  fecha: '',
-  hora: '',
-  precio: 0,
-  poster: {}
-}
+    nombre: '',
+    ubicacion: '',
+    description: '',
+    fecha: '',
+    hora: '',
+    precio: 0,
+    numeroAsistentes: 100,
+    poster: {},
+    asistentes: []
+  }
 submitted = false;
 
   constructor(private service: RegEventService, ) { }
@@ -61,6 +63,8 @@ submitted = false;
       precio: this.evento.precio,
       fecha: this.evento.fecha,
       hora: this.evento.hora,
+      numeroAsistentes: this.evento.numeroAsistentes,
+      asistentes: this.evento.asistentes,
       poster: this.evento.poster
     }   
     this.service.create(data)
@@ -83,6 +87,8 @@ submitted = false;
       fecha: '',
       hora: '',
       precio: 0,
+      asistentes: [],
+      numeroAsistentes:100,
       poster: ''
     };
   }

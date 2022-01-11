@@ -8,7 +8,10 @@ var EV = new Schema({
     precio: {type: Number, required:true},
     fecha: {type: String, required:true},
     hora: {type: String, required:true},
-    poster : Object
+    poster : Object,
+    numeroAsistentes: Number,
+    asistentes: Array,
+    creador: String
 });
 
 const evento = moongose.model("evento", EV);

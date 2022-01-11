@@ -22,6 +22,7 @@ export class VieweventsComponent implements OnInit {
     .subscribe(data => {
       
       while (x < (data.length)){
+        data[x].asistencias= data[x].asistentes.length()
         this.listEvents.push(data[x]);
         x++;
 }
@@ -53,4 +54,6 @@ export class VieweventsComponent implements OnInit {
     sessionStorage.setItem("filtro", y)
 
   }
+
+  
 }
