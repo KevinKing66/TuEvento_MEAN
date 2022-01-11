@@ -118,20 +118,17 @@ async function desactivate(req, res){
 }
 async function asistir(req, res){
 
-    const _id = req.params.id; 
+    const _idE = req.params.id; 
     const asistente= req.body
     try {  
-        const resultado =  await evento.findOne({"_id":_id});
+        let resultado =  await evento.findOne({"_id":_idE});
         if (resultado.asistentes.includes(asistente)){
         resultado.asistentes.push(asistente);
         console.log(resultado);
-
             if (resultado){
                 //en la posicion 0 estara el objeto que usaremos
                 const _id = resultado._id;
 
-                //reutilizamos la la informacion ya existente, pero cambiamos el valos de "estado" a false
-                resultado.activo ? resultado.activo = false : resultado.activo = true;
                 const body = resultado;
 
                 //usando la informacion ant, buscara el objeto y se guardara el cambio hecho
@@ -140,6 +137,7 @@ async function asistir(req, res){
             }
 
         }
+        return res.status(200).json({ mensaje: 'it´s ok'});
     } 
     catch (error) { 
         return res.status(400).json({ mensaje: 'Hemo tenido un error al tratar de hacer esta ooperacion'});
