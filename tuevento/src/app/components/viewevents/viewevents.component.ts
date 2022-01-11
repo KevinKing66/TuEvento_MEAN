@@ -20,9 +20,9 @@ export class VieweventsComponent implements OnInit {
 
     this.viewEventService.getEvent()
     .subscribe(data => {
-      
       while (x < (data.length)){
-        data[x].asistencias= data[x].asistentes.length()
+        data[x].asistencias= data[x].asistentes.length;
+        console.log(data);
         this.listEvents.push(data[x]);
         x++;
 }

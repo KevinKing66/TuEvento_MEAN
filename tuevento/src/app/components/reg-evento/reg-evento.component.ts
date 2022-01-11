@@ -5,6 +5,7 @@ import { EventoM } from 'src/app/models/evento/evento.module';
 import { Observable, ReplaySubject } from 'rxjs';
 import { RegEventService } from 'src/app/services/reg-event.service';
 
+
 @Component({
   selector: 'app-reg-evento',
   templateUrl: './reg-evento.component.html',
@@ -13,6 +14,8 @@ import { RegEventService } from 'src/app/services/reg-event.service';
 export class RegEventoComponent{
   
   file : any;
+  m : any = localStorage.getItem("usuario");
+  
   evento: EventoM = {
     nombre: '',
     ubicacion: '',
@@ -22,13 +25,15 @@ export class RegEventoComponent{
     precio: 0,
     numeroAsistentes: 100,
     poster: {},
-    asistentes: []
+    asistentes: [],
+    creador:JSON.parse(this.m)._id
   }
 submitted = false;
 
   constructor(private service: RegEventService, ) { }
 
 
+  
     //esta funcion concierte los archivos en base64
     convertFile(file : File) : Observable<string> {
       const result = new ReplaySubject<string>(1);
@@ -65,7 +70,8 @@ submitted = false;
       hora: this.evento.hora,
       numeroAsistentes: this.evento.numeroAsistentes,
       asistentes: this.evento.asistentes,
-      poster: this.evento.poster
+      poster: this.evento.poster,
+      creador: this.evento.creador
     }   
     this.service.create(data)
     .subscribe(
@@ -83,6 +89,7 @@ submitted = false;
     this.evento = {
       nombre: '',
       description: '',
+      creador: '',
       ubicacion: '',
       fecha: '',
       hora: '',

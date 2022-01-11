@@ -10,12 +10,14 @@ export class EventoM{
   precio: Number = 0;
   numeroAsistentes: Number;
   hora: any;
+  creador: string;
   poster : any;
   asistentes:[] = [];
 
 
-  constructor(nombre: string, description: string, fecha: string, ubicacion: string, precio: number, numeroAsistentes:number, poster:any   ){
+  constructor(nombre: string, description: string, fecha: string, ubicacion: string, precio: number, numeroAsistentes:number,creador:string, poster:any){
     this.nombre = nombre;
+    this.creador = creador;
     this.description = description;
     this.ubicacion = ubicacion;
     this.fecha = fecha;
