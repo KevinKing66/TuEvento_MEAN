@@ -12,7 +12,7 @@ export class EventoM{
   hora: any;
   creador: string;
   poster : any;
-  asistentes:any [] = [];
+  asistentes: object [] = [];
 
 
   constructor(nombre: string, description: string, fecha: string, ubicacion: string, precio: number, numeroAsistentes:number,creador:string, poster:any){

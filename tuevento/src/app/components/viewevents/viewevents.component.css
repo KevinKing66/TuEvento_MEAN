@@ -71,14 +71,13 @@ button{
 
     
 
-.title{
+/* .title{
     position: absolute;
     z-index: 10;
     background: rgba(0, 0, 0, 0.742);
-    justify-items: flex-end;
     border: 2px solid rgb(225, 225, 225);
     border-radius: 10px 10px 0px;
-}
+} */
 
 
 
@@ -105,11 +104,11 @@ button{
         margin: auto;
         padding: 0px;
     }
-    .title{
+    /* .title{
         border: 0;
         border-radius: 10px;
         
-    }
+    } */
     .image{
     max-height: 18.75vw;
     }

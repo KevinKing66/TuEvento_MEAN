@@ -9,11 +9,9 @@
             
             <div class="image">
                 <img [(src)]="'http://localhost:1001/'+e.poster" [(alt)]="e.poster">
-
             </div>
             <h1>  {{ e.nombre }}</h1>
             <h2>    {{e.fecha}} {{e.hora}}</h2>
-            <p *ngIf="e.numeroAsistentes"> {{ e.asistentes.length }} /{{ e.numeroAsistentes }} </p>
             <button class="more">detalles</button>
 
             <button *ngIf="!e.creador" class="agg" (click)="asistir(e)">asistir</button>

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { Form } from '@angular/forms';
 import { loginM } from '../../models/login/login';
 import { LoginService } from '../../services/login.service';
