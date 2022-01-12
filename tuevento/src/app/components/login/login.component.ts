@@ -60,8 +60,9 @@ export class LoginComponent{
     this.services.create(data)
     .subscribe(
       res => {
-        if (res) localStorage.setItem('usuario', JSON.stringify(res));
+        localStorage.setItem('usuario', JSON.stringify(res));
         this.userP= localStorage.getItem("usuario");
+        this.user =  JSON.parse(this.userP);
         this.logUp = false;
       },
       error => {
