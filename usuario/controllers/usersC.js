@@ -69,9 +69,8 @@ async function Login(req, res){
         const userdb =  await user.findOne({email}); 
         userdb.status = true;
         (userdb) && password == userdb.password ? res.json(userdb) : res.json(userdb.status = false);
-    } 
-    catch (error) { 
-        return res.status (400).json({ mensaje: 'Ocurrio un error', error })
+    }catch (error) { 
+        return res.status(400).json({ mensaje: 'Ocurrio un error', error })
     } 
 }
 
