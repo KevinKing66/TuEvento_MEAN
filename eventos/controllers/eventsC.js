@@ -124,7 +124,6 @@ async function asistir(req, res){
         let resultado =  await evento.findOne({"_id":_idE});
         if (resultado.asistentes.includes(asistente)){
         resultado.asistentes.push(asistente);
-        console.log(resultado);
             if (resultado){
                 //en la posicion 0 estara el objeto que usaremos
                 const _id = resultado._id;

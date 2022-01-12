@@ -13,18 +13,16 @@ export class VieweventsComponent implements OnInit {
   listEventsFiltre: EventoM[] = [];
   filtre: string = '';
   toAsk: boolean = false;
-  m: any = localStorage.getItem("usuario");
+  m: any = localStorage.getItem("usuario") ;
   constructor(private viewEventService: VieweventsService) {
     //arrow fun. para mostrar info, y mostrar si hay errores
     var x = 0;
 
     this.viewEventService.getEvent()
     .subscribe(data => {
-      console.log(this.toAsk);
-      console.log(this.m);
       while (x < (data.length)){
         data[x].asistencias= data[x].asistentes.length;
-        data[x].creador == JSON.parse(this.m)._id ? data[x].creador = true : data[x].creador = false; 
+        this.m ? (data[x].creador == JSON.parse(this.m)._id ? data[x].creador = true : data[x].creador = false) : data[x].creador = false;
         this.listEvents.push(data[x]);
         x++;
 }
