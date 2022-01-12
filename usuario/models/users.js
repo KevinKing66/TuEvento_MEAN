@@ -4,7 +4,7 @@ var US = new Schema({
     email: {type: String, require : true, unique: true},
     fullName: {type: String, require : true},
     password: {type: String, require : true},
-    phoneNumeber: Number
+    phoneNumber: Number
 });
 
 const user = moongose.model("users", US);

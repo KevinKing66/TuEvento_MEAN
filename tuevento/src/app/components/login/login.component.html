@@ -1,3 +1,4 @@
+<!-- incio de sesion -->
 <div  *ngIf="!logUp&&!user">
 
     <form #loginF="ngForm" (ngSubmit)="loginM(loginF)">
@@ -13,15 +14,15 @@
 
 </div>
 
-
+<!-- crear usuario -->
 <div *ngIf="logUp&&!user">
     <form>
         <h1>logUp</h1>
         <a (click)="logUpF()">ya tengo un usuario</a>
-        <input type="email" [(ngModel)]="UserC.email" placeholder="Email" id="E" class="form">
-        <input type="fullName" [(ngModel)]="UserC.fullName" placeholder="Nombre completo" id="FN" class="form">
-        <input type="password"  [(ngModel)]="UserC.password" placeholder="password" id="P" class="form">
-        <input type="number" [(ngModel)]="UserC.phoneNumber" placeholder="Numero telefonico" id="pN">
+        <input type="email" name="Email" [(ngModel)]="UserC.email" placeholder="Email" id="E" class="form">
+        <input type="fullName" name="fullName" [(ngModel)]="UserC.fullName" placeholder="Nombre completo" id="FN" class="form">
+        <input type="password" name="password" [(ngModel)]="UserC.password" placeholder="password" id="P" class="form">
+        <input type="number" name="phoneNumber" [(ngModel)]="UserC.phoneNumber" placeholder="Numero telefonico" id="pN">
         
 
         <button (click)="saveUser()" id="saveUser">
@@ -30,8 +31,7 @@
     </form>
 </div>
 
-
-
+<!-- ajustes y configuraciones de usuario -->
 <div *ngIf="user&&!mod" class="iniciado" style="display:flex;flex-direction: column;align-items: center">
     <h1 style="font-size: 3rem;" *ngIf="user">bienvenido {{user.fullName}}</h1>
 
@@ -44,7 +44,7 @@
     
 </div>
 
-
+<!-- cambiar informacion de usuario -->
 <div *ngIf="mod&&user">
 
         <h1>modificar cuenta</h1>

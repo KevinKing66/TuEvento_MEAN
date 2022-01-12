@@ -7,7 +7,7 @@ const user = require("../models/users");
 async function BuscarUsurioid(req, res){
     const id = req.params._id; 
     try { 
-        const userdb =  await user.find({"id": id }); 
+        const userdb = await user.find({"id": id }); 
         if (userdb){
             res.json(userdb)
         }
@@ -29,7 +29,7 @@ async function BuscarUsuario(req, res){
 function saveUser(req,res){
     var newUser= new user(req.body);
     newUser.save((err,result)=>{
-    res.status(200).send({message:result});
+    res.status(200).send(result);
     });
     }
 

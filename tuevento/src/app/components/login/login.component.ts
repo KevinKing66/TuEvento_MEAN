@@ -19,6 +19,7 @@ export class LoginComponent{
     fullName: '',
     email: '',
     password:'',
+    phoneNumber: 0
   };
 
   constructor(private services: LoginService) {
@@ -29,7 +30,7 @@ export class LoginComponent{
    loginM(loginx:Form){
     //subscribe devuelve una respuesta
     this.services.postSendLogin(this.login).subscribe(res=>{
-      res? localStorage.setItem('usuario', JSON.stringify(res)) : console.log("no joda");
+      if (res) localStorage.setItem('usuario', JSON.stringify(res));
         this.userP= localStorage.getItem("usuario");
         this.user =  JSON.parse(this.userP);
     }, error => {
@@ -54,11 +55,13 @@ export class LoginComponent{
       email: this.UserC.email,
       fullName: this.UserC.fullName,
       password: this.UserC.password,
+      phoneNumber: this.UserC.phoneNumber
     }
     this.services.create(data)
     .subscribe(
       res => {
-        console.log(res);
+        if (res) localStorage.setItem('usuario', JSON.stringify(res));
+        this.userP= localStorage.getItem("usuario");
         this.logUp = false;
       },
       error => {
