@@ -15,7 +15,7 @@ export class VieweventsComponent implements OnInit {
   toAsk: boolean = false;
   m: any = localStorage.getItem("usuario") ;
   constructor(private viewEventService: VieweventsService) {
-    //arrow fun. para mostrar info, y mostrar si hay errores
+ 
     var x = 0;
 
     this.viewEventService.getEvent()
@@ -49,12 +49,14 @@ export class VieweventsComponent implements OnInit {
   }
 
   asistir(e: EventoM){
-    const nombre =  JSON.parse(this.m).fullName;
-    const id = JSON.parse(this.m)._id;
-    const asistente = { "id": id, "fullName": nombre};
-    if(!e.asistentes.includes(asistente)){
-    this.viewEventService.attend(e, asistente).subscribe((res)=>{ console.log(res)});
-    }
+    if (this.m){
+      const nombre =  JSON.parse(this.m).fullName;
+      const id = JSON.parse(this.m)._id;
+      const asistente = { "id": id, "fullName": nombre};
+        if(!e.asistentes.includes(asistente)) this.viewEventService.attend(e, asistente).subscribe((res)=>{ console.log(res)});
+      }else{
+        alert("debes iniciar sesion para poder inscribirte a nuestros eventos");
+      }
   }
 
   

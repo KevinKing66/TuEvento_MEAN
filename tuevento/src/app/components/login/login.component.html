@@ -5,7 +5,7 @@
         <input type="email" name="E"  [(ngModel)]="login.email" id="E" placeholder="Email" class="form">
         <input type="password" name="P"  [(ngModel)]="login.password" id="P" placeholder="password" class="form">
 
-        <a href=""></a>
+        <a (click)="logUpF()">Crear nueva cuenta</a>
         <button type="submit" [disabled]="!loginF.form.valid">
             comprobar
         </button>
@@ -17,14 +17,14 @@
 <div *ngIf="logUp&&!user">
     <form>
         <h1>logUp</h1>
+        <a (click)="logUpF()">ya tengo un usuario</a>
+        <input type="email" [(ngModel)]="UserC.email" placeholder="Email" id="E" class="form">
+        <input type="fullName" [(ngModel)]="UserC.fullName" placeholder="Nombre completo" id="FN" class="form">
+        <input type="password"  [(ngModel)]="UserC.password" placeholder="password" id="P" class="form">
+        <input type="number" [(ngModel)]="UserC.phoneNumber" placeholder="Numero telefonico" id="pN">
+        
 
-        <input type="email" name="E"  [(ngModel)]="UserC.email" placeholder="Email" id="E" class="form">
-        <input type="fullName" name="FN"  [(ngModel)]="UserC.fullName" placeholder="Nombre completo" id="FN" class="form">
-        <input type="password" name="P"  [(ngModel)]="UserC.password" placeholder="password" id="P" class="form">
-        <input type="number" name="PN" [(ngModel)]="UserC.phoneNumber" id="pN">
-        <button>ya tengo un usuario</button>
-
-        <button (click)="saveUser()">
+        <button (click)="saveUser()" id="saveUser">
             comprobar
         </button>
     </form>
