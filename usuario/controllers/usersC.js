@@ -1,7 +1,5 @@
-const { response } = require("express");
-const { find } = require("../models/users");
 const user = require("../models/users");
-
+const JWT = require("jsonwebtoken");
 
 
 async function BuscarUsurioid(req, res){
@@ -74,5 +72,50 @@ async function Login(req, res){
     } 
 }
 
+async function verifyData(req, res){
+    let { password, email } = req.body;
+    try{
+        const userDB = await user.findOne({email});
+        if ((userDB) && password == userDB.password){
+            JWT.sign({
+                user: userDB
+            },
+            "straightforward",
+            (err, token)=>{
+                res.json({token});
+            })
+        }
+    }catch (error) { 
+        return res.status(400).send(error);
+    }
+}
 
-module.exports = {BuscarUsurioid, BuscarUsuario, UpdateUser, DeleteUser, saveUser, Login};
+async function verifyToken(req, res, next){
+    const beareHeader = req.headers['authorization'];
+
+    if (typeof beareHeader !== 'undefined'){
+        const bearerToken = beareHeader.split(" ")[1];
+        req.token = bearerToken;
+        next();
+    }else{
+        res.sendStatus(403);
+    }
+}
+
+async function verifyTokenPt2(req, res){
+    
+
+    JWT.verify(req.token,
+        "straightforward",
+        (error, authData)=>{
+            if(error){
+                res.sendStatus(403);
+            }else{
+                res.json({
+                    authData
+                });
+            }
+        });
+}
+
+module.exports = {BuscarUsurioid, BuscarUsuario, UpdateUser, DeleteUser, saveUser, Login, verifyData, verifyToken, verifyTokenPt2};

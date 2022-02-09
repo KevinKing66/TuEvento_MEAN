@@ -14,6 +14,11 @@ export class VieweventsService {
   getEvent(): Observable<any>{
     return this.http.get(this.url);
   }
+
+  getEventId(_id : string){
+    return this.http.get(this.url+"/"+_id);
+  }
+
   attend(e:EventoM, asistente: object){
     return this.http.put(this.url+"/subscribe/"+e._id, asistente);
   }

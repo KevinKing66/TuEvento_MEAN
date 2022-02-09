@@ -2,10 +2,10 @@
 const evento = require("../models/events");
 
 
-async function BuscareventName(req, res){
-    const ubicacion = req.params.ubicacion; 
+async function BuscareventID(req, res){
+    const _id = req.params._id; 
     try { 
-        const eventodb =  await evento.find({"ubicacion": ubicacion }); 
+        const eventodb =  await evento.find({"_id": _id }); 
         if (eventodb){
             res.json(eventodb);
         }
@@ -146,4 +146,4 @@ async function asistir(req, res){
 
 
 
-module.exports = {BuscareventName, BuscarEvent, Updateevento, Deleteevento, saveevento, files, desactivate, asistir};
+module.exports = {BuscareventID, BuscarEvent, Updateevento, Deleteevento, saveevento, files, desactivate, asistir};

@@ -1,5 +1,4 @@
-var moongose = require('mongoose');
-var Schema = moongose.Schema;
+const { Schema, model } = require("mongoose");
 var US = new Schema({
     email: {type: String, require : true, unique: true},
     fullName: {type: String, require : true},
@@ -8,6 +7,6 @@ var US = new Schema({
     phoneNumber: Number
 });
 
-const user = moongose.model("users", US);
+const user = model("users", US);
 
 module.exports = user;

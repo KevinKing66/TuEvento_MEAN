@@ -29,12 +29,19 @@ export class LoginComponent{
 
    loginM(loginx:Form){
     //subscribe devuelve una respuesta
-    this.services.postSendLogin(this.login).subscribe(res=>{
-      if (res) localStorage.setItem('usuario', JSON.stringify(res));
-        this.userP= localStorage.getItem("usuario");
-        this.user =  JSON.parse(this.userP);
-    }, error => {
-      console.log(error)
+    this.services.token(this.login).subscribe(res=>{
+      let token = res;
+      // localStorage.setItem("tkn", token.token);
+      this.services.verifyTokens(res).subscribe(resp => {
+        let userData:any = resp;
+        this.user = userData.authData.user;
+        sessionStorage.setItem("user", JSON.stringify(userData.authData));
+      });
+    //   if (res) localStorage.setItem('usuario', JSON.stringify(res));
+    //     this.userP= localStorage.getItem("usuario");
+    //     this.user =  JSON.parse(this.userP);
+    // }, error => {
+    //   console.log(error)
     })
     ;
   }
