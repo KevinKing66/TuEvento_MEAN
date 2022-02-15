@@ -119,27 +119,32 @@ async function desactivate(req, res){
 async function asistir(req, res){
 
     const _idE = req.params.id; 
-    const asistente= req.body
+    const asistente = req.body;
+    
     try {  
+        
         let resultado =  await evento.findOne({"_id":_idE});
-        if (resultado.asistentes.includes(asistente)){
-        resultado.asistentes.push(asistente);
-            if (resultado){
-                //en la posicion 0 estara el objeto que usaremos
-                const _id = resultado._id;
-
-                const body = resultado;
-
-                //usando la informacion ant, buscara el objeto y se guardara el cambio hecho
-                const DB = await evento.findByIdAndUpdate(_id, body, {new: true}); 
-                res.json(DB);
+        
+            console.log(resultado);
+            if (!resultado.asistentes){
+                resultado.asistentes = [];
             }
+            if(resultado.asistentes){
+                if (!resultado.asistentes.includes(asistente.id)){
+                    resultado.asistentes.push(asistente);
 
-        }
+                    //usando la informacion ant, buscara el objeto y se guardara el cambio hecho
+                    const DB = await evento.findByIdAndUpdate(_idE, body, {new: true}); 
+                    res.json(DB);
+                }else{
+                    return res.json({estado: "usuario ya estaba inscripto"});
+                }
+            }
+        
         return res.status(200).json({ mensaje: 'it´s ok'});
     } 
     catch (error) { 
-        return res.status(400).json({ mensaje: 'Hemo tenido un error al tratar de hacer esta ooperacion'});
+        return res.status(400).json(error);
     } 
 }
 

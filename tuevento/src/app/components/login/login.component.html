@@ -1,12 +1,12 @@
 <!-- incio de sesion -->
-<div  *ngIf="!logUp&&!user">
+<div  *ngIf="status == 'registro'">
 
-    <form #loginF="ngForm" (ngSubmit)="loginM(loginF)">
+    <form #loginF="ngForm" (ngSubmit)="loginM(loginF)" autocomplete="false"> 
         <h1>Log In</h1>
-        <input type="email" name="E"  [(ngModel)]="login.email" id="E" placeholder="Email" class="form">
-        <input type="password" name="P"  [(ngModel)]="login.password" id="P" placeholder="password" class="form">
+        <input type="email" [(ngModel)]="user.email" [ngModelOptions]="{standalone: true}" class="form" value="x">
+        <input type="password" name="P"  [(ngModel)]="user.password" id="P" placeholder="password" class="form" >
 
-        <a (click)="logUpF()">Crear nueva cuenta</a>
+        <a (click)="logUpFunction()">Crear nueva cuenta</a>
         <button type="submit" [disabled]="!loginF.form.valid">
             comprobar
         </button>
@@ -15,14 +15,14 @@
 </div>
 
 <!-- crear usuario -->
-<div *ngIf="logUp&&!user">
+<div *ngIf="status=='logUp'">
     <form>
         <h1>logUp</h1>
-        <a (click)="logUpF()">ya tengo un usuario</a>
-        <input type="email" name="Email" [(ngModel)]="UserC.email" placeholder="Email" id="E" class="form">
-        <input type="fullName" name="fullName" [(ngModel)]="UserC.fullName" placeholder="Nombre completo" id="FN" class="form">
-        <input type="password" name="password" [(ngModel)]="UserC.password" placeholder="password" id="P" class="form">
-        <input type="number" name="phoneNumber" [(ngModel)]="UserC.phoneNumber" placeholder="Numero telefonico" id="pN">
+        <a (click)="logUpFunction()">ya tengo un usuario</a>
+        <input type="email" name="Email" [(ngModel)]="user.email" placeholder="Email" id="E" class="form" >
+        <input type="fullName" name="fullName" [(ngModel)]="user.fullName" placeholder="Nombre completo" id="FN" class="form">
+        <input type="password" name="password" [(ngModel)]="user.password" placeholder="password" id="P" class="form">
+        <input type="number" name="phoneNumber" [(ngModel)]="user.phoneNumber" placeholder="Numero telefonico" id="pN">
         
 
         <button (click)="saveUser()" id="saveUser">
@@ -32,12 +32,12 @@
 </div>
 
 <!-- ajustes y configuraciones de usuario -->
-<div *ngIf="user&&!mod" class="iniciado" style="display:flex;flex-direction: column;align-items: center">
+<div *ngIf="user._id && status=='onSession'" class="iniciado" style="display:flex;flex-direction: column;align-items: center">
     <h1 style="font-size: 3rem;" *ngIf="user">bienvenido {{user.fullName}}</h1>
 
     <button (click)="clearStorage()" style="height:3rem;border-radius: 15px;">cerrar sesion</button>
     <br>
-    <button (click)="xd()" style="height:3rem;border-radius: 15px;">cambiar informacion</button>
+    <button (click)="modFunction()" style="height:3rem;border-radius: 15px;">cambiar informacion</button>
     <br>
     <button (click)="deleteUser(user._id)" style="background-color: brown;border-radius: 10px;height: 2rem;">eliminar usuario</button>
 
@@ -45,15 +45,15 @@
 </div>
 
 <!-- cambiar informacion de usuario -->
-<div *ngIf="mod&&user">
+<div *ngIf="status=='mod'">
 
         <h1>modificar cuenta</h1>
-        <input type="email" name="E"  [(ngModel)]="userF.email" placeholder="Email" class="form" id="E">
-        <input type="text" [(ngModel)]="userF.fullName" placeholder="nombre completo" class="form" id="FN">
-        <input type="password" [(ngModel)]="userF.password" placeholder="escribe la nueva contraseña" class="form" id="P">        
-        <input type="number" [(ngModel)]="userF.phoneNumber" placeholder="Numero telefonico" class="form" id="pN">
+        <input type="email" name="E"  [(ngModel)]="user.email" placeholder="Email" class="form" id="E">
+        <input type="text" [(ngModel)]="user.fullName" placeholder="nombre completo" class="form" id="FN">
+        <input type="password" [(ngModel)]="user.password" placeholder="escribe la nueva contraseña" class="form" id="P">        
+        <input type="number" [(ngModel)]="user.phoneNumber" placeholder="Numero telefonico" class="form" id="pN">
 
-        <a  (click)="xd()">cancelar</a>
+        <a  (click)="modFunction()">cancelar</a>
         <button (click)="editUser()" id="FM" style="background-color: rgb(0, 102, 105);border-radius: 10px;height: 2rem;">
             Guardar cambios
         </button>

@@ -34,6 +34,7 @@ function saveUser(req,res){
 
 //Actualizar usuario
 async function UpdateUser(req, res){ 
+    console.log(req.body)
     const _id = req.params.id; 
     const body = req.body; 
     try { 

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component} from '@angular/core';
 import { Form } from '@angular/forms';
-import { loginM } from '../../models/login/login';
+import { UsuarioModule } from 'src/app/models/usuario/usuario.module';
 import { LoginService } from '../../services/login.service';
 
 @Component({
@@ -12,65 +12,59 @@ import { LoginService } from '../../services/login.service';
 export class LoginComponent{
 
   userP: any = localStorage.getItem("usuario");
-  user: any =  JSON.parse(this.userP);
-  logUp: boolean = false;
-  mod: boolean = false;
-  UserC: loginM = {
-    fullName: '',
-    email: '',
-    password:'',
-    phoneNumber: 0
-  };
+  user: UsuarioModule = new UsuarioModule();
+  status: string = "registro";
 
   constructor(private services: LoginService) {
 
-
+    if(localStorage.getItem("tkn")){
+      let x = { "token" :  localStorage.getItem("tkn") };
+      this.comeBackData(x);
+    }
    }
 
    loginM(loginx:Form){
-    //subscribe devuelve una respuesta
-    this.services.token(this.login).subscribe(res=>{
-      let token = res;
-      // localStorage.setItem("tkn", token.token);
-      this.services.verifyTokens(res).subscribe(resp => {
-        let userData:any = resp;
-        this.user = userData.authData.user;
-        sessionStorage.setItem("user", JSON.stringify(userData.authData));
-      });
-    //   if (res) localStorage.setItem('usuario', JSON.stringify(res));
-    //     this.userP= localStorage.getItem("usuario");
-    //     this.user =  JSON.parse(this.userP);
-    // }, error => {
-    //   console.log(error)
-    })
-    ;
+    this.services.token(this.user).subscribe(res=>{
+      let token : any = res;
+      localStorage.setItem("tkn", token.token);
+      this.comeBackData(res);
+    });
+  }
+
+  comeBackData(x: any){
+    this.services.verifyTokens(x).subscribe(resp => {
+      let userData:any = resp;
+      this.user = userData.authData.user;
+      this.status = "onSession";
+      sessionStorage.setItem("user", JSON.stringify(userData.authData));
+    });
+
   }
 
 
 
-  clearStorage(): any{
+  clearStorage(){
     localStorage.clear();
-    this.user = false;
+    sessionStorage.clear();
+    this.status = "registro";
   }
 
-  logUpF(): any{
-    this.logUp ? this.logUp=false : this.logUp=true;  
+  logUpFunction(){
+    this.status=="logUp" ? this.status="registro":this.status = "logUp";  
+  }
+
+  modFunction(){
+    this.status=="mod" ? this.status="onSession":this.status="mod";
   }
 
   saveUser(): void {
-    const data = {
-      email: this.UserC.email,
-      fullName: this.UserC.fullName,
-      password: this.UserC.password,
-      phoneNumber: this.UserC.phoneNumber
-    }
-    this.services.create(data)
+    this.services.create(this.user)
     .subscribe(
       res => {
         localStorage.setItem('usuario', JSON.stringify(res));
         this.userP= localStorage.getItem("usuario");
         this.user =  JSON.parse(this.userP);
-        this.logUp = false;
+        this.status = "registro";
       },
       error => {
         console.log(error);
@@ -87,7 +81,7 @@ deleteUser(id: any){
 }
 
 editUser(){
-  let id = this.user._id;
+  let id: any = this.user._id;
   this.services.edit(id, this.user).subscribe(res=>{
     console.log(res);
   },error=>{
@@ -95,11 +89,6 @@ editUser(){
   });
 }
 
-xd():any{
-  this.mod? this.mod=false : this.mod=true;
-}
 
-  userF: loginM = this.user;
-  login: loginM = new loginM();
 }
 

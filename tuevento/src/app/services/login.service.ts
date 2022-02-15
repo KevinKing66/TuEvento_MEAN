@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { loginM } from '../models/login/login';
 import { Observable } from 'rxjs';
+import { UsuarioModule } from '../models/usuario/usuario.module';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class LoginService {
 
   }
 
-  token(loginx:loginM){
+  token(loginx:UsuarioModule){
     const re = "/login";
     return this.http.post(this.url+re , loginx);
   }
@@ -32,7 +32,7 @@ export class LoginService {
     return this.http.post(this.url+parameters,x, {headers});
   }
   
-  create(UserC:loginM): Observable<Object>{
+  create(UserC:UsuarioModule): Observable<Object>{
     let res = "/created";
     return this.http.post(this.url+res, UserC);
    }
@@ -42,8 +42,9 @@ export class LoginService {
     return this.http.delete(this.url+res+id)
    }
    
-   edit(id: string,user: JSON){
+   edit(id: string,user:UsuarioModule){
     let res = "/update/";
      return this.http.put(this.url+res+id, user);
    }
+
 }

@@ -12,6 +12,7 @@ import { HomeComponent } from './components/home/home.component';
 import { RegEventoComponent } from './components/reg-evento/reg-evento.component';
 import { VieweventsComponent } from './components/viewevents/viewevents.component';
 import { ImgComponent } from './components/img/img.component';
+import { EventComponent } from './components/event/event.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ImgComponent } from './components/img/img.component';
     HomeComponent,
     RegEventoComponent,
     VieweventsComponent,
-    ImgComponent
+    ImgComponent,
+    EventComponent
   ],
   imports: [
     BrowserModule,

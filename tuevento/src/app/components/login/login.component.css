@@ -15,7 +15,7 @@ a{
     grid-column: 1/13;  
     text-align: center;  
 }
-#E{
+#emailBox{
     grid-row:  3;
 }
 #P{
