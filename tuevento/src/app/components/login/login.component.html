@@ -1,7 +1,7 @@
 <!-- incio de sesion -->
 <div  *ngIf="status == 'registro'">
 
-    <form #loginF="ngForm" (ngSubmit)="loginM(loginF)" autocomplete="false"> 
+    <form #loginF="ngForm" (ngSubmit)="loginM(loginF)" autocomplete="current-password"> 
         <h1>Log In</h1>
         <input type="email" [(ngModel)]="user.email" [ngModelOptions]="{standalone: true}" class="form" value="x">
         <input type="password" name="P"  [(ngModel)]="user.password" id="P" placeholder="password" class="form" >
