@@ -4,6 +4,7 @@ import { Form } from '@angular/forms';
 import { EventoM } from 'src/app/models/evento/evento.module';
 import { Observable, ReplaySubject } from 'rxjs';
 import { RegEventService } from 'src/app/services/reg-event.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Component({
@@ -14,23 +15,17 @@ import { RegEventService } from 'src/app/services/reg-event.service';
 export class RegEventoComponent{
   
   file : any;
-  m : any = localStorage.getItem("usuario");
+  user : any = sessionStorage.getItem("user");
+  preview: string;
   
-  evento: EventoM = {
-    nombre: '',
-    ubicacion: '',
-    description: '',
-    fecha: '',
-    hora: '',
-    precio: 0,
-    numeroAsistentes: 100,
-    poster: {},
-    asistentes: [],
-    creador:JSON.parse(this.m)._id
-  };
-submitted = false;
+  evento: EventoM = new EventoM();
+  submitted = false;
 
-  constructor(private service: RegEventService, ) { }
+  constructor(private service: RegEventService, private sanitizer: DomSanitizer ) { 
+    this.user = JSON.parse(this.user);
+    console.log(this.user.user)
+    this.evento.creador = this.user.user._id;
+  }
 
 
   
@@ -49,31 +44,23 @@ submitted = false;
     onFileSelected(event:any) {
       //guardamos el arhivo recibido en una var
       let file = event.target.files[0];
-
+      
       //convertimos el archivo a base64
       this.convertFile(file).subscribe((base64: string) => {
-        this.evento.poster = {files : base64}
-        console.log(this.evento.poster)
+        this.evento.poster = {files : base64};
       });
+
+      //preview
+      this.previewF(file).then((img: any) =>{
+        this.preview = img.base
+      })
     }
   
 
   
 
   saveEvento(): void {
-    const data = {
-      nombre: this.evento.nombre,
-      description: this.evento.description,
-      ubicacion: this.evento.ubicacion,
-      precio: this.evento.precio,
-      fecha: this.evento.fecha,
-      hora: this.evento.hora,
-      numeroAsistentes: this.evento.numeroAsistentes,
-      asistentes: this.evento.asistentes,
-      poster: this.evento.poster,
-      creador: this.evento.creador
-    }   
-    this.service.create(data)
+    this.service.create(this.evento)
     .subscribe(
       response => {
         console.log(response);
@@ -86,18 +73,36 @@ submitted = false;
 
   newEvento(): void {
     this.submitted = false;
-    this.evento = {
-      nombre: '',
-      description: '',
-      creador: '',
-      ubicacion: '',
-      fecha: '',
-      hora: '',
-      precio: 0,
-      asistentes: [],
-      numeroAsistentes:100,
-      poster: ''
-    };
+    this.evento = new EventoM();
+    this.evento.creador = this.user.user._id;
+    this.preview = ""
   }
+
+  //base 64, miniatura
+  previewF = async (event: any) => new Promise((resolve)=> {
+    try{
+      const unsafeimg = window.URL.createObjectURL(event);
+      const image = this.sanitizer.bypassSecurityTrustUrl(unsafeimg);
+      const reader = new FileReader();
+      reader.readAsDataURL(event);
+      reader.onload = () =>{
+        resolve({
+          blob: event,
+          image,
+          base: reader.result
+        });
+        };
+      reader.onerror = error =>{
+        resolve({
+          blob: event,
+          image,
+          base:null
+        });
+      };
+    }catch(e){
+      return null;
+    };
+  });
+  
 }
   

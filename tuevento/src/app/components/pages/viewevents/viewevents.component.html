@@ -15,11 +15,7 @@
             <button class="more">detalles</button>
 
             <button *ngIf="!e.creador" class="agg" (click)="asistir(e)">asistir</button>
-            <style> 
-            e{
-                content: 'ok';
-            }
-                </style>
+            
         </dt>
     </dl>
 </div>
@@ -30,13 +26,15 @@
             <div class="image">
                 <img [(src)]="'http://localhost:1001/'+e.poster" [(alt)]="e.poster">
             </div>
-
-            <h1>  {{ e.nombre }}</h1>
-            <p> hola </p>
-            <h2>    {{e.fecha}} {{e.hora}}</h2>
-
+            <div class="text">
+                <h1>  {{ e.nombre }}</h1>
+                <p> {{ e.numeroAsistentesMaximo }} </p>
+                <h2>    {{e.fecha}} {{e.hora}}</h2>
+            </div>
             
             
+
+
             <button class="more">detalles</button>
 
             <button *ngIf="!e.creador" class="agg" (click)="asistir(e)">asistir</button>

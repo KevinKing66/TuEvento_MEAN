@@ -6,8 +6,15 @@
 
             <div class="form-group" id="f1">
                 <label for="img">Imagen del poster</label>
-                
-    <input (change)="onFileSelected($event)" type="file">
+                <div>
+                    
+                    <input (change)="onFileSelected($event)" type="file">
+                    <div *ngIf="preview">
+                        <br>
+                        <img [src]="preview">
+
+                    </div>
+                </div>
 
             </div>
 
@@ -28,9 +35,9 @@
                 <input
                     type="number"
                     class="form-control"
-                    id="numeroAsistentes"
+                    id="numeroAsistentesMaximo"
                     required
-                    [(ngModel)]="evento.numeroAsistentes"
+                    [(ngModel)]="evento.numeroAsistentesMaximo"
                     name="numeroAsistentes" aria-required
                 />
             </div>  

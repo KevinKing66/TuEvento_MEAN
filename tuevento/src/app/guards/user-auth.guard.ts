@@ -23,15 +23,18 @@ export class UserAuthGuard implements CanActivate {
 
       if(localStorage.getItem("tkn")){
         let x = { "token" :  localStorage.getItem("tkn") };
-        this.session.verifyTokens(x).subscribe(res => {
+        this.session.verifyTokens(x).subscribe(async res => {
           console.log(res)
           let userData:any = res;
           this.user = userData.authData.user;
           sessionStorage.setItem("user", JSON.stringify(userData.authData));
         });
+        
+          return true;
+      }else{
+        return false;
       }
 
-    return true;
   }
   
 }

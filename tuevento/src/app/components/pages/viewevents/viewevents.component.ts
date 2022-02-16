@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EventoM } from 'src/app/models/evento/evento.module';
 import { LoginService } from 'src/app/services/login.service';
 import { VieweventsService } from 'src/app/services/viewevents.service';
+import { LoginComponent } from '../../login/login.component';
 
 @Component({
   selector: 'app-viewevents',
@@ -17,11 +18,9 @@ export class VieweventsComponent{
   user: any;
 
   constructor(private viewEventService: VieweventsService, private userServices: LoginService) {
-    if(sessionStorage.getItem("user")){
+
     this.user = sessionStorage.getItem("user");
-    this.user = JSON.parse(this.user);
-    this.user = this.user.user;
-  }
+    this.user = JSON.parse(this.user).user;
     var x = 0;
 
     this.viewEventService.getEvent()
@@ -52,8 +51,8 @@ export class VieweventsComponent{
   }
 
   asistir(e: EventoM): void{
-
     if (this.user){
+      alert("hola");
       const nombre =  this.user.fullName;
       const id = this.user._id;
       const asistente = { "id": id, "fullName": nombre};
@@ -77,13 +76,7 @@ export class VieweventsComponent{
               })
             })
         }
-        
-        
-        
-
-      }else{
-        alert("debes iniciar sesion para poder inscribirte a nuestros eventos");
-      };
+      }
   }
 
   
