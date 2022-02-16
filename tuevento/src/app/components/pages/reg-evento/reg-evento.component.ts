@@ -27,7 +27,7 @@ export class RegEventoComponent{
     poster: {},
     asistentes: [],
     creador:JSON.parse(this.m)._id
-  }
+  };
 submitted = false;
 
   constructor(private service: RegEventService, ) { }

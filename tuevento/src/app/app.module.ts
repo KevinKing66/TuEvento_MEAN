@@ -6,13 +6,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { HomeComponent } from './components/home/home.component';
-import { RegEventoComponent } from './components/reg-evento/reg-evento.component';
-import { VieweventsComponent } from './components/viewevents/viewevents.component';
-import { ImgComponent } from './components/img/img.component';
-import { EventComponent } from './components/event/event.component';
+import { HeaderComponent } from './components/share/header/header.component';
+import { FooterComponent } from './components/share/footer/footer.component';
+import { HomeComponent } from './components/share/home/home.component';
+import { RegEventoComponent } from './components/pages/reg-evento/reg-evento.component';
+import { VieweventsComponent } from './components/pages/viewevents/viewevents.component';
+import { EventComponent } from './components/pages/event/event.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +22,6 @@ import { EventComponent } from './components/event/event.component';
     HomeComponent,
     RegEventoComponent,
     VieweventsComponent,
-    ImgComponent,
     EventComponent
   ],
   imports: [

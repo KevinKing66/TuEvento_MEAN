@@ -5,57 +5,44 @@ form{
     display:  grid;
     grid-template-columns:3;
     grid-row: 4;
+
+    margin: auto;
 }
 h1{
     grid-row: 1;
     grid-column: 1/13;  
     text-align: center;  
 }
-a{
-    grid-column: 1/13;  
-    text-align: center;  
-}
-#emailBox{
-    grid-row:  3;
-}
-#P{
-    grid-row: 5;
-}
-#FN{
-    grid-row: 7;
-}
-#pN{
-    grid-row: 9;
-    grid-column: 5/9;
-}
-#FM{
-    grid-row: 13;
-}
+
 #saveUser{
     grid-row: 12;
 }
 button{
     grid-row: 9;
     grid-column: 6/8;
-    border-radius: 15px 0;
-    margin-bottom: 2rem;
+    margin-bottom: auto;
+    border: 2px solid rgb(125, 133, 140);
+    border-radius: 4px;
+    height: 3rem;
+    width: 20ch;
 }
 input{
+    font-size: 1.8rem;
     border: 0;
     border-radius: 15px 0;
-    font-size: 1.3rem;
-}
-input:hover{
-    inset: 0;
+    display: list-item;
+    margin: 10px auto;
 }
 
 div{
     font-size: 1.2rem;
     color: aliceblue;
-    height: 28rem;
-    display:  grid;
-    grid-template-columns:3;
-    grid-row: 4;
+    /* height: 28rem; */
+    max-height: 60%;
+    width: 100vw;
+    display: inline-block;
+    margin: auto;
+    text-align: center;
 }
 
 .form{

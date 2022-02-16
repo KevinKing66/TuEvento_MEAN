@@ -23,7 +23,7 @@ export class LoginComponent{
     }
    }
 
-   loginM(loginx:Form){
+   loginM(loginx:Form): void{
     this.services.token(this.user).subscribe(res=>{
       let token : any = res;
       localStorage.setItem("tkn", token.token);
@@ -31,7 +31,7 @@ export class LoginComponent{
     });
   }
 
-  comeBackData(x: any){
+  comeBackData(x: any): void{
     this.services.verifyTokens(x).subscribe(resp => {
       let userData:any = resp;
       this.user = userData.authData.user;
@@ -43,17 +43,17 @@ export class LoginComponent{
 
 
 
-  clearStorage(){
+  clearStorage(): void{
     localStorage.clear();
     sessionStorage.clear();
     this.status = "registro";
   }
 
-  logUpFunction(){
+  logUpFunction(): void{
     this.status=="logUp" ? this.status="registro":this.status = "logUp";  
   }
 
-  modFunction(){
+  modFunction(): void{
     this.status=="mod" ? this.status="onSession":this.status="mod";
   }
 
@@ -71,7 +71,7 @@ export class LoginComponent{
       });
 }
 
-deleteUser(id: any){
+deleteUser(id: any): void{
   this.services.delete(id).subscribe(res =>{
     console.log(res);
     this.clearStorage();
@@ -80,7 +80,7 @@ deleteUser(id: any){
   })
 }
 
-editUser(){
+editUser(): void{
   let id: any = this.user._id;
   this.services.edit(id, this.user).subscribe(res=>{
     console.log(res);
@@ -88,7 +88,5 @@ editUser(){
     console.log(error)
   });
 }
-
-
 }
 

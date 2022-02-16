@@ -120,12 +120,10 @@ async function asistir(req, res){
 
     const _idE = req.params.id; 
     const asistente = req.body;
-    
+    console.log(asistente)
     try {  
         
         let resultado =  await evento.findOne({"_id":_idE});
-        
-            console.log(resultado);
             if (!resultado.asistentes){
                 resultado.asistentes = [];
             }
@@ -134,16 +132,15 @@ async function asistir(req, res){
                     resultado.asistentes.push(asistente);
 
                     //usando la informacion ant, buscara el objeto y se guardara el cambio hecho
-                    const DB = await evento.findByIdAndUpdate(_idE, body, {new: true}); 
+                    const DB = await evento.findByIdAndUpdate(_idE, resultado, {new: true}); 
                     res.json(DB);
                 }else{
                     return res.json({estado: "usuario ya estaba inscripto"});
                 }
             }
-        
-        return res.status(200).json({ mensaje: 'it´s ok'});
     } 
     catch (error) { 
+        console.log(error)
         return res.status(400).json(error);
     } 
 }

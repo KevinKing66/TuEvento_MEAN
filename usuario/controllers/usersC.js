@@ -62,17 +62,6 @@ async function DeleteUser(req, res){
     } 
 }
 
-async function Login(req, res){
-    const { password, email } = req.body;
-    try { 
-        const userdb =  await user.findOne({email}); 
-        userdb.status = true;
-        (userdb) && password == userdb.password ? res.json(userdb) : res.json(userdb.status = false);
-    }catch (error) { 
-        return res.status(400).json({ mensaje: 'Ocurrio un error', error })
-    } 
-}
-
 async function verifyData(req, res){
     let { password, email } = req.body;
     try{
@@ -119,4 +108,4 @@ async function verifyTokenPt2(req, res){
         });
 }
 
-module.exports = {BuscarUsurioid, BuscarUsuario, UpdateUser, DeleteUser, saveUser, Login, verifyData, verifyToken, verifyTokenPt2};
+module.exports = {BuscarUsurioid, BuscarUsuario, UpdateUser, DeleteUser, saveUser, verifyData, verifyToken, verifyTokenPt2};

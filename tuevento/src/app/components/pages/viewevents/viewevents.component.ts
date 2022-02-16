@@ -8,7 +8,7 @@ import { VieweventsService } from 'src/app/services/viewevents.service';
   templateUrl: './viewevents.component.html',
   styleUrls: ['./viewevents.component.css']
 })
-export class VieweventsComponent implements OnInit {
+export class VieweventsComponent{
 
   listEvents: EventoM[] = [];
   listEventsFiltre: EventoM[] = [];
@@ -38,11 +38,8 @@ export class VieweventsComponent implements OnInit {
 
    
 }
-  ngOnInit(): void {
-  }
 
-
-  toAskF(){
+  toAskF(): void{
     this.listEventsFiltre = [];
     this.filtre == "" ? this.toAsk = false : this.toAsk = true;
     let i= 0;
@@ -54,26 +51,35 @@ export class VieweventsComponent implements OnInit {
     }
   }
 
-  asistir(e: EventoM){
+  asistir(e: EventoM): void{
+
     if (this.user){
       const nombre =  this.user.fullName;
       const id = this.user._id;
       const asistente = { "id": id, "fullName": nombre};
-
+      let evento = {"_idEvento" : e._id, "nameEvento" : e.nombre, "date": e.fecha};
         if(!e.asistentes.includes(asistente)){ 
-          // this.viewEventService.attend(e, asistente).subscribe((res)=>{ console.log(res)});
-          
-        }
-        if(!this.user.misEventos){
-          this.user.misEventos = [];
+
+          this.viewEventService.attend(e, asistente).subscribe((res)=>{ console.log(res)});
+          if(!this.user.misEventos){
+            this.user.misEventos = [];
+          };
+            this.user.misEventos.push(evento);
+            console.log(this.user);
+            // this.userServices.edit(id, this.user).subscribe();
+            this.userServices.token(this.user).subscribe(res=>{
+              let token : any = res;
+              localStorage.setItem("tkn", token.token);
+              this.userServices.verifyTokens(res).subscribe(resp => {
+                let userData:any = resp;
+                // this.user = userData.authData.user;
+                sessionStorage.setItem("user", JSON.stringify(userData.authData));
+              })
+            })
         }
         
-        this.user.misEventos.push({_idEvento : e._id, nameEvento : e.nombre, date: e.fecha});
-        console.log(this.user)
-        this.userServices.edit(id, this.user).subscribe(res=>{
-
-          console.log(res)
-        });
+        
+        
 
       }else{
         alert("debes iniciar sesion para poder inscribirte a nuestros eventos");

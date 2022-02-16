@@ -35,11 +35,11 @@
 <div *ngIf="user._id && status=='onSession'" class="iniciado" style="display:flex;flex-direction: column;align-items: center">
     <h1 style="font-size: 3rem;" *ngIf="user">bienvenido {{user.fullName}}</h1>
 
-    <button (click)="clearStorage()" style="height:3rem;border-radius: 15px;">cerrar sesion</button>
+    <button (click)="clearStorage()">cerrar sesion</button>
     <br>
-    <button (click)="modFunction()" style="height:3rem;border-radius: 15px;">cambiar informacion</button>
+    <button (click)="modFunction()">cambiar informacion</button>
     <br>
-    <button (click)="deleteUser(user._id)" style="background-color: brown;border-radius: 10px;height: 2rem;">eliminar usuario</button>
+    <button (click)="deleteUser(user._id)" style="background-color: rgb(109, 0, 0)">eliminar usuario</button>
 
     
 </div>
@@ -53,8 +53,8 @@
         <input type="password" [(ngModel)]="user.password" placeholder="escribe la nueva contraseña" class="form" id="P">        
         <input type="number" [(ngModel)]="user.phoneNumber" placeholder="Numero telefonico" class="form" id="pN">
 
-        <a  (click)="modFunction()">cancelar</a>
-        <button (click)="editUser()" id="FM" style="background-color: rgb(0, 102, 105);border-radius: 10px;height: 2rem;">
+        <button  (click)="modFunction()" style="background-color: rgb(0, 102, 105);border-radius: 10px;height: 2rem; margin: auto">cancelar</button>
+        <button (click)="editUser()" id="FM" style="background-color: rgb(0, 102, 105);border-radius: 10px;height: 2rem; margin: auto">
             Guardar cambios
         </button>
 
