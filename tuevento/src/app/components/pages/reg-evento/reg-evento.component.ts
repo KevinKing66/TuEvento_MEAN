@@ -68,14 +68,14 @@ export class RegEventoComponent{
       },
       error => {
         console.log(error);
-      });
+      })
 }
 
   newEvento(): void {
     this.submitted = false;
     this.evento = new EventoM();
     this.evento.creador = this.user.user._id;
-    this.preview = ""
+    this.preview = "";
   }
 
   //base 64, miniatura
@@ -98,11 +98,9 @@ export class RegEventoComponent{
           image,
           base:null
         });
-      };
+      }
     }catch(e){
       return null;
-    };
-  });
-  
+    }
+  })
 }
-  

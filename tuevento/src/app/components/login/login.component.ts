@@ -73,7 +73,6 @@ export class LoginComponent{
 
 deleteUser(id: any): void{
   this.services.delete(id).subscribe(res =>{
-    console.log(res);
     this.clearStorage();
   },error=>{
     console.log(error)
@@ -83,7 +82,6 @@ deleteUser(id: any): void{
 editUser(): void{
   let id: any = this.user._id;
   this.services.edit(id, this.user).subscribe(res=>{
-    console.log(res);
   },error=>{
     console.log(error)
   });

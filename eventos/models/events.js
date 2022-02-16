@@ -9,7 +9,7 @@ var EV = new Schema({
     fecha: {type: String, required:true},
     hora: {type: String, required:true},
     poster : Object,
-    numeroAsistentes: Number,
+    numeroAsistentesMaximo: Number,
     asistentes: Array,
     creador: String
 });
