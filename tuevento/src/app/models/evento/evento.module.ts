@@ -5,7 +5,7 @@ export class EventoM{
   description: String = "";
   fecha: string = "";
   precio: Number = 0;
-  numeroAsistentesMaximo: Number = 10;
+  numeroAsistentesMaximo: Number = 10000;
   hora: any;
   creador: string = "";
   poster: any;

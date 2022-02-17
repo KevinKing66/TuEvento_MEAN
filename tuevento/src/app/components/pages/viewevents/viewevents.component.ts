@@ -52,7 +52,6 @@ export class VieweventsComponent{
 
 
   asistir(e: EventoM): void{
-    console.log(e)
     if (this.user){
       const nombre =  this.user.fullName;
       const id = this.user._id;

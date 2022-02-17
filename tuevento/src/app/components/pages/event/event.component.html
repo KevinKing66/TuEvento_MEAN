@@ -1,1 +1,21 @@
-<p>event works!</p>
+<main>
+
+    <img [(src)]="uri">
+    <div class="data">
+        <h1>{{evento.nombre}}</h1>
+
+        <h3>Asistentes: {{asistentes}} de {{evento.numeroAsistentesMaximo}} </h3>
+
+        <button>Asistir</button>
+        <p>
+            fecha:{{evento.fecha}}
+            
+            hora: {{evento.hora}}
+        </p>
+        <p>
+            {{evento.description}}
+        </p>
+
+    </div>
+
+</main>

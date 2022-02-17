@@ -1,0 +1,25 @@
+*{
+    display: block;
+    text-align: center;
+    justify-content: center;
+    justify-items: center;
+}
+img{
+    width: 100vw;
+}
+button{
+    margin: auto;
+    border: 1px solid rgb(7, 112, 119);
+    border-radius: 3px;
+    font-size: x-large;
+}
+button:hover{
+    background-color: rgb(7, 112, 119);
+}
+button:focus{
+    background-color: rgb(66, 0, 131);
+    border-color:  rgb(66, 0, 131);
+}
+@media screen and (orientation: landscape){
+
+}
