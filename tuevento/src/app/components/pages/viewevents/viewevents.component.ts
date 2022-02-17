@@ -26,8 +26,8 @@ export class VieweventsComponent{
     this.viewEventService.getEvent()
     .subscribe(data => {
       while (x < (data.length)){
-        data[x].asiclsstencias= data[x].asistentes.length;
-        // this.m ? (data[x].creador == JSON.parse(this.m)._id ? data[x].creador = true : data[x].creador = false) : data[x].creador = false;
+        data[x].numeroAsistentes = data[x].asistentes.length;
+        this.user ? (data[x].creador == this.user._id ? data[x].creador = true : data[x].creador = false) : data[x].creador = false;
         this.listEvents.push(data[x]);
         x++;
 }
@@ -50,28 +50,28 @@ export class VieweventsComponent{
     }
   }
 
+
   asistir(e: EventoM): void{
+    console.log(e)
     if (this.user){
-      alert("hola");
       const nombre =  this.user.fullName;
       const id = this.user._id;
       const asistente = { "id": id, "fullName": nombre};
       let evento = {"_idEvento" : e._id, "nameEvento" : e.nombre, "date": e.fecha};
-        if(!e.asistentes.includes(asistente)){ 
-
+        if(!e.asistentes.some((id)=>{return id})){ 
           this.viewEventService.attend(e, asistente).subscribe((res)=>{ console.log(res)});
           if(!this.user.misEventos){
             this.user.misEventos = [];
           };
             this.user.misEventos.push(evento);
             console.log(this.user);
-            // this.userServices.edit(id, this.user).subscribe();
+            this.userServices.edit(id, this.user).subscribe();
             this.userServices.token(this.user).subscribe(res=>{
               let token : any = res;
               localStorage.setItem("tkn", token.token);
               this.userServices.verifyTokens(res).subscribe(resp => {
                 let userData:any = resp;
-                // this.user = userData.authData.user;
+                this.user = userData.authData.user;
                 sessionStorage.setItem("user", JSON.stringify(userData.authData));
               })
             })

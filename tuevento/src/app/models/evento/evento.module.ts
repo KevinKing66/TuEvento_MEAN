@@ -1,6 +1,3 @@
-import { Time } from "@angular/common";
-import { Data } from "@angular/router";
-
 export class EventoM{
   _id?: string;
   nombre: String = "";

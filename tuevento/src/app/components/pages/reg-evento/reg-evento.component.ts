@@ -23,7 +23,6 @@ export class RegEventoComponent{
 
   constructor(private service: RegEventService, private sanitizer: DomSanitizer ) { 
     this.user = JSON.parse(this.user);
-    console.log(this.user.user)
     this.evento.creador = this.user.user._id;
   }
 

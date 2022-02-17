@@ -16,7 +16,7 @@ export class LoginComponent{
   status: string = "registro";
 
   constructor(private services: LoginService) {
-
+    console.log(document.location);
     if(localStorage.getItem("tkn")){
       let x = { "token" :  localStorage.getItem("tkn") };
       this.comeBackData(x);

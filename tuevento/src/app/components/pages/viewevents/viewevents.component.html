@@ -12,7 +12,7 @@
             </div>
             <h1>  {{ e.nombre }}</h1>
             <h2>    {{e.fecha}} {{e.hora}}</h2>
-            <button class="more">detalles</button>
+            <button class="more" [routerLink]="['/id/',e._id]">detalles</button>
 
             <button *ngIf="!e.creador" class="agg" (click)="asistir(e)">asistir</button>
             

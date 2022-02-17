@@ -1,8 +1,8 @@
 export class UsuarioModule {
   _id?: String; 
   email: String = "";
-  fullName: String ='';
+  fullName: String ="";
   phoneNumber?: Number;
-  password: String = ''; 
+  password: String = ""; 
   misEventos?: object[]; 
 }
