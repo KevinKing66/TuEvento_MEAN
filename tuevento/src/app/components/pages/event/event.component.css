@@ -17,8 +17,8 @@ button:hover{
     background-color: rgb(7, 112, 119);
 }
 button:focus{
-    background-color: rgb(66, 0, 131);
-    border-color:  rgb(66, 0, 131);
+    background-color: rgb(7, 112, 119);
+    border-color:  rgb(7, 112, 119);
 }
 @media screen and (orientation: landscape){
 
