@@ -7,7 +7,7 @@
         <h2> Precio: ${{evento.precio}} (COP)</h2>
         <h3>Asistentes: {{asistentes}} de {{evento.numeroAsistentesMaximo}} </h3>
 
-        <button>Asistir</button>
+        <button (click)="asistir(evento)">Asistir</button>
         <p>
             fecha: {{evento.fecha}}
         </p>

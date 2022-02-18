@@ -12,7 +12,7 @@ import { VieweventsService } from 'src/app/services/viewevents.service';
 export class EventComponent implements OnInit {
 
   evento: EventoM = new EventoM();
-  uri: any = "http://localhost:1001/";
+  uri: any;
   asistentes: number;
   user: any;
 
@@ -23,7 +23,7 @@ export class EventComponent implements OnInit {
     
     this.services.getEventId(parametro.replace("/id/", "")).subscribe((res:EventoM)=>{
       this.evento = res[0];
-      this.uri = this.uri + this.evento.poster;
+      this.uri = "http://localhost:1001/" + this.evento.poster;
       this.asistentes = this.evento.asistentes.length;
     })
     

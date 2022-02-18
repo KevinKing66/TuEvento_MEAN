@@ -21,6 +21,7 @@ button:focus{
 @media screen and (orientation: landscape){
     *{
         text-align: start;
+        margin: 5px;
     }
     main{
 
