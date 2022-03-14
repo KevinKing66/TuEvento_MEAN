@@ -1,44 +1,44 @@
 <div id="buscar">
-    <input type="search" name="SC" id="SH"  placeholder="¿que estas buscando?"
-    [(ngModel)]="filtre">
-    <button (click)="toAskF()">buscar</button>
+    <input type="search" id="SH" placeholder="¿que estas buscando?" (change)="filtre($event)">
+    <button (click)="filtreStrictPerBottom()" id="">buscar</button>
 </div>
-<div *ngIf="!toAsk">
-    <dl>
-        <dt *ngFor="let e of listEvents" class="card">
-            
+<div *ngIf="!listEventsFiltre">
+
+    <ol>
+        <li type="none" *ngFor="let e of listEvents; index as i" class="card">
+
             <div class="image">
                 <img [(src)]="'http://localhost:1001/'+e.poster" [(alt)]="e.poster">
             </div>
-            <h1>  {{ e.nombre }}</h1>
-            <h2>    {{e.fecha}} {{e.hora}}</h2>
-            <button class="more" [routerLink]="['/id/',e._id]">detalles</button>
 
+            <h1> {{ e.nombre }}</h1>
+            <h2> {{e.fecha}} {{e.hora}}</h2>
+
+            <button class="more" [routerLink]="['/id/',e._id]">detalles</button>
             <button *ngIf="!e.creador" class="agg" (click)="asistir(e)">asistir</button>
-            
-        </dt>
-    </dl>
+
+        </li>
+    </ol>
 </div>
-<div *ngIf="toAsk">
-    <dl>
-        <dt *ngFor="let e of listEventsFiltre" class="card">
-            
+<div *ngIf="filtreConditional()">
+    <div *ngIf="warning()">
+        <h1>Lo sentimos, no hemos encontrado nada que coincida con lo que escribiste</h1>
+    </div>
+    <ol>
+        <li *ngFor="let e of listEventsFiltre" class="card">
+
             <div class="image">
-                <!-- <img [(src)]="'http://localhost:1001/'+e.poster" [(alt)]="e.poster"> -->
+                <img [(src)]="'http://localhost:1001/'+e.poster" [(alt)]="e.poster">
             </div>
             <div class="text">
-                <h1>  {{ e.nombre }}</h1>
+                <h1> {{ e.nombre }}</h1>
                 <p> {{ e.numeroAsistentesMaximo }} </p>
-                <h2>    {{e.fecha}} {{e.hora}}</h2>
+                <h2> {{e.fecha}} {{e.hora}}</h2>
             </div>
-            
-            
-
 
             <button class="more">detalles</button>
-
             <button *ngIf="!e.creador" class="agg" (click)="asistir(e)">asistir</button>
 
-        </dt>
-    </dl>
+        </li>
+    </ol>
 </div>

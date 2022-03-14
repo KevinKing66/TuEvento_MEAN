@@ -25,9 +25,7 @@ export class EventComponent implements OnInit {
       this.evento = res[0];
       this.uri = "http://localhost:1001/" + this.evento.poster;
       this.asistentes = this.evento.asistentes.length;
-    })
-    
-    
+    })    
   }
 
   asistir(e: EventoM): void{

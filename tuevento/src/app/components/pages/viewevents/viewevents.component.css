@@ -1,46 +1,51 @@
-*{
+* {
     z-index: 2;
 }
 
-
-dl{
+ol {
     display: flex;
     justify-content: center;
     justify-items: center;
     flex-wrap: wrap;
-    flex-grow: 2;
+    gap: 10px;
+    padding: 0;
 }
 
-.card{
+.card {
     text-align: center;
+    align-content: center;
     background: rgba(0, 0, 0, 0.85);
     width: 80%;
     z-index: 2;
     border: 3px solid transparent;
     border-radius: 20px;
     overflow: hidden;
-    position: sticky;
+    text-overflow: ellipsis;
     display: flex;
     border: 2px solid black;
     flex-direction: column;
     top: 5px;
-    margin: 1rem;
-}
-.card button{
-    font-size: x-large;
+    margin: 0;
 }
 
-.more{
+.card button {
+    font-size: large;
+}
+
+.more {
     margin-top: auto;
     background-color: rgb(7, 112, 119);
 }
-img{
+
+img {
     width: 100%;
 }
-button{
+
+button {
     width: 100%;
 }
-#buscar{
+
+#buscar {
     font-size: 1.4rem;
     position: fixed;
     border-radius: 10px;
@@ -49,68 +54,68 @@ button{
     width: 100vw;
     background-color: rgb(255, 255, 255);
 }
-#buscar input{
+
+#buscar input {
     font-size: 1.4rem;
-    height:25px;
+    height: 25px;
     width: 70%;
     margin: 0;
 }
-#buscar button:focus{
+
+#buscar button:focus {
     color: rgb(0, 0, 0);
 }
 
-#buscar button{
+#buscar button {
     border-radius: 0 10px 10px 0;
     height: 25px;
     font-size: 1.4rem;
     width: 30%;
     background-color: rgb(19, 97, 170);
 }
-button, input{
-    font-size: medium;    
-    border: 0 ;
+
+button,
+input {
+    font-size: medium;
+    border: 0;
 }
-.image{
+
+.image {
     display: flex;
     justify-content: start;
     width: 100%;
     border-radius: 10px 10px 0px;
 }
 
-.agg{
+.agg {
     background-color: rgb(0, 83, 79);
     width: 100%;
 }
 
-
 @media all and (orientation: landscape) {
-    .card{
-        max-width: 18%;
-        height: 70vh;
-        max-height: 80vh;
+    .card {
+        width: 17rem;
         font-size: x-small;
     }
-    .text{
+    .text {
         height: 6rem;
     }
-    #buscar{
-        width: 33.4vw;
-        left: 33.3vw;
-        right: 33.3vw;
+    #buscar {
+        width: 40vw;
+        left: 30vw;
+        right: 30vw;
     }
-    input{
+    input {
         border-radius: 10px 0 0 10px;
     }
-    h1,h2{
+    h1,
+    h2 {
         margin: auto;
         padding: 0px;
     }
-    .image{
-    max-height: 25vw;
-    }
-    button{
+    button {
         width: 100%;
         font-size: medium;
+        text-overflow: ellipsis;
     }
-    
 }

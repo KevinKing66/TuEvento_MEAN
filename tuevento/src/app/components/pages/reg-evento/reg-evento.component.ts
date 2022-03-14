@@ -12,63 +12,60 @@ import { DomSanitizer } from '@angular/platform-browser';
   templateUrl: './reg-evento.component.html',
   styleUrls: ['./reg-evento.component.css']
 })
-export class RegEventoComponent{
-  
-  file : any;
-  user : any = sessionStorage.getItem("user");
+export class RegEventoComponent {
+
+  file: any;
+  user: any = sessionStorage.getItem("user");
   preview: string;
-  
+
   evento: EventoM = new EventoM();
   submitted = false;
 
-  constructor(private service: RegEventService, private sanitizer: DomSanitizer ) { 
+  constructor(private service: RegEventService, private sanitizer: DomSanitizer) {
     this.user = JSON.parse(this.user);
     this.evento.creador = this.user.user._id;
   }
 
+  //esta funcion concierte los archivos en base64
+  convertFile(file: File): Observable<string> {
+    const result = new ReplaySubject<string>(1);
+    const reader = new FileReader();
 
-  
-    //esta funcion concierte los archivos en base64
-    convertFile(file : File) : Observable<string> {
-      const result = new ReplaySubject<string>(1);
-      const reader = new FileReader();
-      
-      reader.readAsBinaryString(file);
-      reader.onload = (event:any) => {
-        result.next(btoa(event.target.result.toString()));
-      }
-      return result;
+    reader.readAsBinaryString(file);
+    reader.onload = (event: any) => {
+      result.next(btoa(event.target.result.toString()));
     }
-  
-    onFileSelected(event:any) {
-      //guardamos el arhivo recibido en una var
-      let file = event.target.files[0];
-      
-      //convertimos el archivo a base64
-      this.convertFile(file).subscribe((base64: string) => {
-        this.evento.poster = {files : base64};
-      });
+    return result;
+  }
 
-      //preview
-      this.previewF(file).then((img: any) =>{
-        this.preview = img.base
-      })
-    }
-  
+  onFileSelected(event: any) {
+    //guardamos el arhivo recibido en una var
+    let file = event.target.files[0];
 
-  
+    //convertimos el archivo a base64
+    this.convertFile(file).subscribe((base64: string) => {
+      this.evento.poster = { files: base64 };
+    });
+
+    //preview
+    this.previewF(file).then((img: any) => {
+      this.preview = img.base
+    })
+  }
 
   saveEvento(): void {
+    this.evento.nombre = this.evento.nombre.toLocaleUpperCase();
+    this.evento.ubicacion = this.evento.ubicacion.toLocaleUpperCase();
     this.service.create(this.evento)
-    .subscribe(
-      response => {
-        console.log(response);
-        this.submitted = true;
-      },
-      error => {
-        console.log(error);
-      })
-}
+      .subscribe(
+        response => {
+          console.log(response);
+          this.submitted = true;
+        },
+        error => {
+          console.log(error);
+        })
+  }
 
   newEvento(): void {
     this.submitted = false;
@@ -78,27 +75,27 @@ export class RegEventoComponent{
   }
 
   //base 64, miniatura
-  previewF = async (event: any) => new Promise((resolve)=> {
-    try{
+  previewF = async (event: any) => new Promise((resolve) => {
+    try {
       const unsafeimg = window.URL.createObjectURL(event);
       const image = this.sanitizer.bypassSecurityTrustUrl(unsafeimg);
       const reader = new FileReader();
       reader.readAsDataURL(event);
-      reader.onload = () =>{
+      reader.onload = () => {
         resolve({
           blob: event,
           image,
           base: reader.result
         });
-        };
-      reader.onerror = error =>{
+      };
+      reader.onerror = error => {
         resolve({
           blob: event,
           image,
-          base:null
+          base: null
         });
       }
-    }catch(e){
+    } catch (e) {
       return null;
     }
   })
